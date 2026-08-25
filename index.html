@@ -928,68 +928,56 @@ body.theme-red { /* ❤️ 校园的甜蜜 43397 */
 .fx-btn:hover { transform: scale(1.08) rotate(-4deg); }
 .fx-btn:nth-child(2) { animation-delay: .6s; }
 @keyframes btn-pulse { 0%,100% { box-shadow: 2px 2px 0 rgba(0,0,0,.35);} 50% { box-shadow: 0 0 10px 3px #ff99dd, 2px 2px 0 rgba(0,0,0,.35);} }
-
-/* ===== 🌟 极繁堆叠装饰层（真实 QQ 空间 floaty/pendant 动图 × 星光纹理） ===== */
+/* ===== 🌟 极繁纹理（body::before，窗口之下仅露缝隙） ===== */
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: 0;
+  pointer-events: none;
+  background-image:
+    url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%2740%27%20height%3D%2740%27%20viewBox%3D%270%200%2036%2036%27%3E%3Cpath%20d%3D%27M18%203l4.4%2010.1L33%2014l-8%207.1%202.2%2010.9L18%2026%208.8%2032%2011%2021.1%203%2014l10.6-.9z%27%20fill%3D%27white%27%20fill-opacity%3D%27.55%27%2F%3E%3C%2Fsvg%3E"),
+    url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%2726%27%20height%3D%2726%27%20viewBox%3D%270%200%2024%2024%27%3E%3Cpath%20d%3D%27M12%2021.35l-1.45-1.32C5.4%2015.36%202%2012.28%202%208.5%202%205.42%204.42%203%207.5%203c1.74%200%203.41.81%204.5%202.09C13.09%203.81%2014.76%203%2016.5%203%2019.58%203%2022%205.42%2022%208.5c0%203.78-3.4%206.86-8.55%2011.54z%27%20fill%3D%27white%27%20fill-opacity%3D%27.4%27%2F%3E%3C%2Fsvg%3E"),
+    radial-gradient(1100px 750px at 18% 12%, var(--deco-tint,#7cc4ff) 0%, rgba(255,255,255,0) 62%),
+    radial-gradient(1000px 700px at 88% 88%, var(--deco-tint,#7cc4ff) 0%, rgba(255,255,255,0) 60%);
+  background-size: 110px 110px, 88px 88px, 100% 100%, 100% 100%;
+  background-repeat: repeat, repeat, no-repeat, no-repeat;
+  background-position: 0 0, 0 0, 0 0, 0 0;
+  mix-blend-mode: overlay;
+  opacity: .5;
+  animation: deco-pan 90s linear infinite;
+}
+@keyframes deco-pan {
+  from { background-position: 0 0, 0 0, 0 0, 0 0; }
+  to   { background-position: 110px 110px, 88px 88px, 0 0, 0 0; }
+}
+/* ===== 🌟 千禧年飘浮动图（叠页面边缘，不遮内容） ===== */
 #v2-deco {
   position: fixed; inset: 0; z-index: 3; pointer-events: none; overflow: hidden;
 }
-#v2-deco .pat {
-  position: absolute; inset: -20%;
-  background-image:
-    linear-gradient(135deg, var(--deco-tint,#7cc4ff) 0%, rgba(255,255,255,0.08) 45%, var(--deco-tint,#7cc4ff) 100%),
-    url( + star_u + ),
-    url( + heart_u + );
-  background-size: 200% 200%, 120px 120px, 96px 96px;
-  background-position: 0 0, 0 0, 0 0;
-  mix-blend-mode: screen;
-  opacity: .38;
-  animation: deco-pan 80s linear infinite, deco-hue 24s ease-in-out infinite;
-}
-@keyframes deco-pan {
-  from { background-position: 0 0, 0 0, 0 0; }
-  to   { background-position: 100% 100%, 120px 120px, 96px 96px; }
-}
-@keyframes deco-hue {
-  0%,100% { filter: hue-rotate(0deg); }
-  50%     { filter: hue-rotate(40deg); }
-}
-#v2-deco .flt {
-  position: absolute; display: block; image-rendering: auto;
-  will-change: transform; opacity: .92;
-  filter: drop-shadow(0 0 4px rgba(255,255,255,.45));
-}
-#v2-deco .flt.f1  { left: 5%;   top: 16%;  width: 40px; animation: bobA 5.2s ease-in-out infinite; }
-#v2-deco .flt.f2  { right: 8%;  top: 24%;  width: 60px; animation: bobB 6.1s ease-in-out infinite; }
-#v2-deco .flt.f3  { left: 47%;  top: 6%;   width: 46px; animation: bobA 4.4s ease-in-out infinite reverse; }
-#v2-deco .flt.f4  { right: 20%; bottom: 18%; width: 36px; animation: bobB 5.8s ease-in-out infinite; }
-#v2-deco .flt.f5  { left: 11%;  bottom: 24%; width: 44px; animation: bobC 6.6s ease-in-out infinite reverse; }
-#v2-deco .flt.f6  { right: 38%; top: 10%;  width: 42px; animation: bobA 3.9s ease-in-out infinite; }
-#v2-deco .flt.f7  { left: 28%;  bottom: 10%; width: 46px; animation: bobC 5.0s ease-in-out infinite; }
-#v2-deco .flt.f8  { right: 4%;  bottom: 28%; width: 44px; animation: bobB 4.8s ease-in-out infinite reverse; }
-#v2-deco .flt.f9  { left: 21%;  top: 40%;  width: 42px; animation: bobA 7.0s ease-in-out infinite; }
-@keyframes bobA { 0%,100% { transform: translateY(0)    rotate(0deg); }  50% { transform: translateY(-16px) rotate(10deg);  } }
-@keyframes bobB { 0%,100% { transform: translateY(0)    rotate(0deg); }  50% { transform: translateY(14px)  rotate(-12deg); } }
-@keyframes bobC { 0%,100% { transform: translateY(0) scale(1); }       50% { transform: translateY(-12px) scale(1.15); } }
-#v2-deco .pend {
-  position: absolute; top: 0; width: 55px;
-  transform-origin: top center;
-  filter: drop-shadow(0 2px 6px rgba(0,0,0,.35));
-  opacity: .95;
-}
-#v2-deco .pend.p1 { left: 6px;  animation: swayL 4.2s ease-in-out infinite; }
-#v2-deco .pend.p2 { right: 6px; animation: swayR 4.8s ease-in-out infinite; }
+#v2-deco .flt, #v2-deco .pend { position: absolute; will-change: transform; }
+#v2-deco .flt { width: 40px; opacity: .92; filter: drop-shadow(0 0 4px rgba(255,255,255,.4)); }
+#v2-deco .flt.f1 { left: 2.5%;  top: 7%;    width: 40px; animation: bobA 5.2s ease-in-out infinite; }
+#v2-deco .flt.f2 { right: 2.5%; top: 8%;    width: 54px; animation: bobB 6.1s ease-in-out infinite; }
+#v2-deco .flt.f3 { right: 4%;   bottom: 20%; width: 40px; animation: bobA 4.4s ease-in-out infinite reverse; }
+#v2-deco .flt.f4 { left: 4%;    bottom: 22%; width: 42px; animation: bobC 5.8s ease-in-out infinite; }
+#v2-deco .flt.f5 { right: 32%;  bottom: 3%;  width: 40px; animation: bobB 6.6s ease-in-out infinite reverse; }
+#v2-deco .flt.f6 { left: 32%;   bottom: 3%;  width: 42px; animation: bobA 5.0s ease-in-out infinite; }
+@keyframes bobA { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-14px) rotate(9deg); } }
+@keyframes bobB { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(12px) rotate(-10deg); } }
+@keyframes bobC { 0%,100% { transform: translateY(0) scale(1); }       50% { transform: translateY(-10px) scale(1.14); } }
+#v2-deco .pend { top: 0; width: 50px; transform-origin: top center; filter: drop-shadow(0 2px 6px rgba(0,0,0,.35)); opacity: .95; }
+#v2-deco .pend.p1 { left: 10px;  animation: swayL 4.2s ease-in-out infinite; }
+#v2-deco .pend.p2 { right: 10px; animation: swayR 4.8s ease-in-out infinite; }
 @keyframes swayL { 0%,100% { transform: rotate(2.5deg); } 50% { transform: rotate(-2.5deg); } }
 @keyframes swayR { 0%,100% { transform: rotate(-2.5deg); } 50% { transform: rotate(2.5deg); } }
 @media (max-width: 780px) {
-  #v2-deco .flt.f2, #v2-deco .flt.f4, #v2-deco .flt.f5,
-  #v2-deco .flt.f6, #v2-deco .flt.f7, #v2-deco .flt.f9 { display: none; }
+  #v2-deco .flt.f3, #v2-deco .flt.f4, #v2-deco .flt.f5, #v2-deco .flt.f6, #v2-deco .pend { display: none; }
   #v2-deco .flt { width: 30px !important; }
-  #v2-deco .pend { width: 34px; }
-  #v2-deco .pat { opacity: .3; }
+  body::before { opacity: .35; }
 }
 @media (prefers-reduced-motion: reduce) {
-  #v2-deco .flt, #v2-deco .pend, #v2-deco .pat { animation: none !important; }
+  #v2-deco .flt, #v2-deco .pend, body::before { animation: none !important; }
 }
+
+
 
 
 /* --- 日记窗口新样式 --- */
@@ -1157,27 +1145,23 @@ body.theme-red { /* ❤️ 校园的甜蜜 43397 */
 
 
 
+<!-- 🌟 千禧年飘浮装饰：QQ 空间原版动图（叠页面边缘） -->
+<div id="v2-deco" aria-hidden="true">
+  <img class="flt f1" src="assets/float_145.gif" alt=""><!-- 七彩音符 -->
+  <img class="flt f2" src="assets/float_222.gif" alt=""><!-- 紫蝴蝶 -->
+  <img class="flt f3" src="assets/float_613.gif" alt=""><!-- 星星雨 -->
+  <img class="flt f4" src="assets/float_604.gif" alt=""><!-- 草莓 -->
+  <img class="flt f5" src="assets/float_601.gif" alt=""><!-- 冰块 -->
+  <img class="flt f6" src="assets/float_602.gif" alt=""><!-- 冰柠檬 -->
+  <img class="pend p1" src="assets/pend_552.gif" alt=""><!-- 粉红的心 -->
+  <img class="pend p2" src="assets/pend_639.gif" alt=""><!-- 城堡 -->
+</div>
 <div id="fxToolbar" title="点击切换皮肤 / 飘落特效">
   <button class="fx-btn" onclick="cycleTheme()" title="换肤：冰蓝💎 / 薰衣草紫💜 / 2005橙🧡 / 樱粉🌸 / 碧绿🍃 / 暗夜🖤 / 金辉💛 / 中国红❤️"><span>🎨</span><span class="fx-lbl">换肤</span></button>
   <button class="fx-btn" onclick="cycleFx()"    title="飘落：关 / ❄️雪 / 🌸樱 / ⭐星 / 🦋蝶"><span>✨</span><span class="fx-lbl">特效</span></button>
 
 </div>
 
-<!-- 🌟 极繁堆叠装饰层：QQ 空间真实飘浮动图 + 挂件 -->
-<div id="v2-deco" aria-hidden="true">
-  <span class="pat"></span>
-  <img class="flt f1" src="assets/float_145.gif" alt="">
-  <img class="flt f2" src="assets/float_222.gif" alt="">
-  <img class="flt f3" src="assets/float_613.gif" alt="">
-  <img class="flt f4" src="assets/float_219.gif" alt="">
-  <img class="flt f5" src="assets/float_601.gif" alt="">
-  <img class="flt f6" src="assets/float_604.gif" alt="">
-  <img class="flt f7" src="assets/float_602.gif" alt="">
-  <img class="flt f8" src="assets/float_610.gif" alt="">
-  <img class="flt f9" src="assets/float_215.gif" alt="">
-  <img class="pend p1" src="assets/pend_552.gif" alt="">
-  <img class="pend p2" src="assets/pend_639.gif" alt="">
-</div>
 
 <div class="page-shell">
 
