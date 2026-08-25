@@ -744,42 +744,50 @@ body {
   --title-g1:#0055bb; --title-g2:#002288; --title-fg:#ffff66;
   --accent:#0077ff; --btn-primary-1:#0088dd; --btn-primary-2:#0055aa;
   --body-bg1:#000080; --body-bg2:#0044aa;
+  --deco-tint:#7cc4ff;
 }
 body.theme-purple {
   --title-g1:#7a2bce; --title-g2:#4a0e8a; --title-fg:#ffe6ff;
   --accent:#c084fc; --btn-primary-1:#c084fc; --btn-primary-2:#7e22ce;
   --body-bg1:#1a0540; --body-bg2:#4c1d95;
-}
+  --deco-tint:#d8a9ff;
+
 body.theme-qq {
   --title-g1:#ff6600; --title-g2:#c03300; --title-fg:#fffacd;
   --accent:#ff8833; --btn-primary-1:#ff8833; --btn-primary-2:#c05213;
   --body-bg1:#2a0800; --body-bg2:#7a2200;
-}
+  --deco-tint:#ffb35c;
+
 body.theme-pink { /* 🌸 樱之恋 */
   --title-g1:#d63384; --title-g2:#9c1f63; --title-fg:#fff0f6;
   --accent:#f06595; --btn-primary-1:#f06595; --btn-primary-2:#c2255c;
   --body-bg1:#3d0e26; --body-bg2:#7a1f4d;
-}
+  --deco-tint:#ff9ad5;
+
 body.theme-green { /* 🍃 碧水莲天 */
   --title-g1:#0d9f74; --title-g2:#04694c; --title-fg:#eafff6;
   --accent:#10b981; --btn-primary-1:#0d9f74; --btn-primary-2:#04694c;
   --body-bg1:#02150e; --body-bg2:#0b4a38;
-}
+  --deco-tint:#7de3b0;
+
 body.theme-black { /* 🖤 暗夜黑 */
   --title-g1:#6d28d9; --title-g2:#2e1065; --title-fg:#ff9be0;
   --accent:#a855f7; --btn-primary-1:#8b5cf6; --btn-primary-2:#4c1d95;
   --body-bg1:#12000f; --body-bg2:#24142e;
-}
+  --deco-tint:#ff7ad9;
+
 body.theme-yellow { /* 💛 古典旋律 */
   --title-g1:#d9a400; --title-g2:#8a6200; --title-fg:#fff0b3;
   --accent:#fbbf24; --btn-primary-1:#d9a400; --btn-primary-2:#996d00;
   --body-bg1:#2a1e00; --body-bg2:#6b4a00;
-}
+  --deco-tint:#ffdf6b;
+
 body.theme-red { /* ❤️ 校园的甜蜜 */
   --title-g1:#e11d48; --title-g2:#9f1239; --title-fg:#ffe6ea;
   --accent:#f43f5e; --btn-primary-1:#e11d48; --btn-primary-2:#9f1239;
   --body-bg1:#2b0008; --body-bg2:#7a0923;
-}
+  --deco-tint:#ff8fa0;
+
 
 /* --- 全屏特效 canvas & 所有 win98 升 z-index --- */
 #fx { position:fixed; inset:0; z-index:1; pointer-events:none; }
@@ -920,6 +928,69 @@ body.theme-red { /* ❤️ 校园的甜蜜 43397 */
 .fx-btn:hover { transform: scale(1.08) rotate(-4deg); }
 .fx-btn:nth-child(2) { animation-delay: .6s; }
 @keyframes btn-pulse { 0%,100% { box-shadow: 2px 2px 0 rgba(0,0,0,.35);} 50% { box-shadow: 0 0 10px 3px #ff99dd, 2px 2px 0 rgba(0,0,0,.35);} }
+
+/* ===== 🌟 极繁堆叠装饰层（真实 QQ 空间 floaty/pendant 动图 × 星光纹理） ===== */
+#v2-deco {
+  position: fixed; inset: 0; z-index: 3; pointer-events: none; overflow: hidden;
+}
+#v2-deco .pat {
+  position: absolute; inset: -20%;
+  background-image:
+    linear-gradient(135deg, var(--deco-tint,#7cc4ff) 0%, rgba(255,255,255,0.08) 45%, var(--deco-tint,#7cc4ff) 100%),
+    url( + star_u + ),
+    url( + heart_u + );
+  background-size: 200% 200%, 120px 120px, 96px 96px;
+  background-position: 0 0, 0 0, 0 0;
+  mix-blend-mode: screen;
+  opacity: .38;
+  animation: deco-pan 80s linear infinite, deco-hue 24s ease-in-out infinite;
+}
+@keyframes deco-pan {
+  from { background-position: 0 0, 0 0, 0 0; }
+  to   { background-position: 100% 100%, 120px 120px, 96px 96px; }
+}
+@keyframes deco-hue {
+  0%,100% { filter: hue-rotate(0deg); }
+  50%     { filter: hue-rotate(40deg); }
+}
+#v2-deco .flt {
+  position: absolute; display: block; image-rendering: auto;
+  will-change: transform; opacity: .92;
+  filter: drop-shadow(0 0 4px rgba(255,255,255,.45));
+}
+#v2-deco .flt.f1  { left: 5%;   top: 16%;  width: 40px; animation: bobA 5.2s ease-in-out infinite; }
+#v2-deco .flt.f2  { right: 8%;  top: 24%;  width: 60px; animation: bobB 6.1s ease-in-out infinite; }
+#v2-deco .flt.f3  { left: 47%;  top: 6%;   width: 46px; animation: bobA 4.4s ease-in-out infinite reverse; }
+#v2-deco .flt.f4  { right: 20%; bottom: 18%; width: 36px; animation: bobB 5.8s ease-in-out infinite; }
+#v2-deco .flt.f5  { left: 11%;  bottom: 24%; width: 44px; animation: bobC 6.6s ease-in-out infinite reverse; }
+#v2-deco .flt.f6  { right: 38%; top: 10%;  width: 42px; animation: bobA 3.9s ease-in-out infinite; }
+#v2-deco .flt.f7  { left: 28%;  bottom: 10%; width: 46px; animation: bobC 5.0s ease-in-out infinite; }
+#v2-deco .flt.f8  { right: 4%;  bottom: 28%; width: 44px; animation: bobB 4.8s ease-in-out infinite reverse; }
+#v2-deco .flt.f9  { left: 21%;  top: 40%;  width: 42px; animation: bobA 7.0s ease-in-out infinite; }
+@keyframes bobA { 0%,100% { transform: translateY(0)    rotate(0deg); }  50% { transform: translateY(-16px) rotate(10deg);  } }
+@keyframes bobB { 0%,100% { transform: translateY(0)    rotate(0deg); }  50% { transform: translateY(14px)  rotate(-12deg); } }
+@keyframes bobC { 0%,100% { transform: translateY(0) scale(1); }       50% { transform: translateY(-12px) scale(1.15); } }
+#v2-deco .pend {
+  position: absolute; top: 0; width: 55px;
+  transform-origin: top center;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,.35));
+  opacity: .95;
+}
+#v2-deco .pend.p1 { left: 6px;  animation: swayL 4.2s ease-in-out infinite; }
+#v2-deco .pend.p2 { right: 6px; animation: swayR 4.8s ease-in-out infinite; }
+@keyframes swayL { 0%,100% { transform: rotate(2.5deg); } 50% { transform: rotate(-2.5deg); } }
+@keyframes swayR { 0%,100% { transform: rotate(-2.5deg); } 50% { transform: rotate(2.5deg); } }
+@media (max-width: 780px) {
+  #v2-deco .flt.f2, #v2-deco .flt.f4, #v2-deco .flt.f5,
+  #v2-deco .flt.f6, #v2-deco .flt.f7, #v2-deco .flt.f9 { display: none; }
+  #v2-deco .flt { width: 30px !important; }
+  #v2-deco .pend { width: 34px; }
+  #v2-deco .pat { opacity: .3; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #v2-deco .flt, #v2-deco .pend, #v2-deco .pat { animation: none !important; }
+}
+
 
 /* --- 日记窗口新样式 --- */
 .diary-tabs { display:flex; gap:4px; flex-wrap:wrap; margin-bottom:6px; }
@@ -1089,6 +1160,23 @@ body.theme-red { /* ❤️ 校园的甜蜜 43397 */
 <div id="fxToolbar" title="点击切换皮肤 / 飘落特效">
   <button class="fx-btn" onclick="cycleTheme()" title="换肤：冰蓝💎 / 薰衣草紫💜 / 2005橙🧡 / 樱粉🌸 / 碧绿🍃 / 暗夜🖤 / 金辉💛 / 中国红❤️"><span>🎨</span><span class="fx-lbl">换肤</span></button>
   <button class="fx-btn" onclick="cycleFx()"    title="飘落：关 / ❄️雪 / 🌸樱 / ⭐星 / 🦋蝶"><span>✨</span><span class="fx-lbl">特效</span></button>
+
+</div>
+
+<!-- 🌟 极繁堆叠装饰层：QQ 空间真实飘浮动图 + 挂件 -->
+<div id="v2-deco" aria-hidden="true">
+  <span class="pat"></span>
+  <img class="flt f1" src="assets/float_145.gif" alt="">
+  <img class="flt f2" src="assets/float_222.gif" alt="">
+  <img class="flt f3" src="assets/float_613.gif" alt="">
+  <img class="flt f4" src="assets/float_219.gif" alt="">
+  <img class="flt f5" src="assets/float_601.gif" alt="">
+  <img class="flt f6" src="assets/float_604.gif" alt="">
+  <img class="flt f7" src="assets/float_602.gif" alt="">
+  <img class="flt f8" src="assets/float_610.gif" alt="">
+  <img class="flt f9" src="assets/float_215.gif" alt="">
+  <img class="pend p1" src="assets/pend_552.gif" alt="">
+  <img class="pend p2" src="assets/pend_639.gif" alt="">
 </div>
 
 <div class="page-shell">
