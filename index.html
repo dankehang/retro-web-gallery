@@ -1,752 +1,1806 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>✨ Blingee Pixel World ✨</title>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<meta charset="GB2312">
+<title>★冰蝴蝶的个人主页★ ~欢迎光临哦~</title>
 <style>
-  /* ========== Blingee Pixel Reset & Base ========== */
-  * { box-sizing: border-box; margin: 0; padding: 0; image-rendering: pixelated; }
+/* ===== 千禧年中国互联网复古 Y2K-CN ===== */
+* { box-sizing: border-box; }
 
-  html, body {
-    font-family: 'VT323', monospace;
-    font-size: 20px;
-    color: #222;
-    overflow-x: hidden;
-    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><text y='20' font-size='20'>⭐</text></svg>") 12 12, auto;
-  }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "SimSun", "宋体", "NSimSun", serif;
+  font-size: 14px;
+  color: #000;
+  background: #0a246a;
+  /* 经典蓝色星空渐变 + 星星GIF风格点阵 */
+  background-image:
+    radial-gradient(circle at 15% 20%, #fff 1px, transparent 2px),
+    radial-gradient(circle at 35% 70%, #fff 1px, transparent 2px),
+    radial-gradient(circle at 65% 30%, #fff 1px, transparent 2px),
+    radial-gradient(circle at 85% 80%, #fff 1px, transparent 2px),
+    radial-gradient(circle at 50% 50%, #ffffff99 1px, transparent 2px),
+    linear-gradient(180deg, #000080 0%, #0044aa 30%, #0066cc 60%, #0044aa 100%);
+  background-size: 200px 200px, 220px 220px, 180px 180px, 260px 260px, 300px 300px, auto;
+  background-attachment: fixed;
+  min-height: 100vh;
+  cursor: default;
+}
 
-  /* ========== Rainbow Animated Background ========== */
-  body {
-    background: linear-gradient(
-      45deg,
-      #ff6b9d, #feca57, #48dbfb, #ff9ff3, #54a0ff,
-      #5f27cd, #ff6b9d, #feca57, #48dbfb
-    );
-    background-size: 400% 400%;
-    animation: rainbowBG 12s ease infinite;
-    min-height: 100vh;
-    position: relative;
-  }
-  @keyframes rainbowBG {
-    0%   { background-position: 0% 50%; }
-    50%  { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
+/* ===== 页面最外层：90s/00s 居中固定宽度表格布局 ===== */
+.page-shell {
+  width: 960px;
+  margin: 10px auto;
+  background: #ffffff;
+  border: 2px solid #000;
+  /* Win98 风格外边框 */
+  box-shadow:
+    inset 1px 1px 0 #fff, inset -1px -1px 0 #808080,
+    inset 2px 2px 0 #dfdfdf, inset -2px -2px 0 #404040,
+    3px 3px 0 rgba(0,0,0,0.4);
+}
 
-  /* ========== Pixelated Checkerboard Overlay ========== */
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(45deg, rgba(255,255,255,0.08) 25%, transparent 25%),
-      linear-gradient(-45deg, rgba(255,255,255,0.08) 25%, transparent 25%),
-      linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.08) 75%),
-      linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.08) 75%);
-    background-size: 16px 16px;
-    background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
-    pointer-events: none;
-    z-index: 0;
-  }
+/* ===== 顶部 Banner 区（网易/搜狐/雅虎中国风格） ===== */
+.site-banner {
+  background: linear-gradient(180deg, #0055bb 0%, #003388 50%, #001155 100%);
+  color: #fff;
+  padding: 0;
+  border-bottom: 2px solid #000;
+  position: relative;
+  overflow: hidden;
+}
+.banner-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  position: relative;
+  z-index: 2;
+}
+.site-title {
+  font-family: "华文行楷", "KaiTi", "楷体", serif;
+  font-size: 34px;
+  color: #ffff66;
+  text-shadow: 2px 2px 0 #ff0066, -1px -1px 0 #fff;
+  letter-spacing: 4px;
+  animation: rainbowSlogan 5s linear infinite;
+}
+@keyframes rainbowSlogan {
+  0%,100% { color: #ffff66; text-shadow: 2px 2px 0 #ff0066, -1px -1px 0 #fff; }
+  25%     { color: #66ffff; text-shadow: 2px 2px 0 #ff00ff, -1px -1px 0 #fff; }
+  50%     { color: #ff66ff; text-shadow: 2px 2px 0 #0066ff, -1px -1px 0 #fff; }
+  75%     { color: #66ff66; text-shadow: 2px 2px 0 #ff6600, -1px -1px 0 #fff; }
+}
+.banner-tagline {
+  font-size: 12px;
+  color: #cceeff;
+  margin-top: 4px;
+}
+.banner-qq {
+  background: #fff;
+  color: #000;
+  padding: 6px 10px;
+  border: 2px solid #000;
+  font-size: 12px;
+  box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #808080;
+}
+.banner-qq b { color: #c00; font-size: 14px; }
 
-  /* ========== Falling Sparkles Background Layer ========== */
-  #sparkle-bg {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1;
-    overflow: hidden;
-  }
-  .bg-sparkle {
-    position: absolute;
-    font-size: 20px;
-    animation: fall linear infinite, twinkle 1.5s ease-in-out infinite alternate;
-    opacity: 0.85;
-  }
-  @keyframes fall {
-    0%   { transform: translateY(-10vh) rotate(0deg); }
-    100% { transform: translateY(110vh) rotate(360deg); }
-  }
-  @keyframes twinkle {
-    0%   { opacity: 0.2; transform: scale(0.7); }
-    100% { opacity: 1;   transform: scale(1.2); }
-  }
+/* Banner 底部跑马灯（marquee 经典） */
+.marquee-ribbon {
+  background: #ffffcc;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  font-size: 12px;
+  color: #000080;
+  padding: 4px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.marquee-ribbon .mr-inner {
+  display: inline-block;
+  animation: mrScroll 22s linear infinite;
+}
+@keyframes mrScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-ribbon span { margin: 0 18px; }
+.marquee-ribbon .hl { color: #c00; font-weight: bold; }
+.marquee-ribbon .gr { color: #060; }
+.marquee-ribbon .bl { color: #00c; }
 
-  /* ========== Mouse Trail Sparkles ========== */
-  .trail-sparkle {
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-    font-size: 18px;
-    animation: trailPop 0.9s ease-out forwards;
-  }
-  @keyframes trailPop {
-    0%   { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
-    100% { opacity: 0; transform: translate(-50%, -150%) scale(0.3) rotate(180deg); }
-  }
+/* ===== 主导航条 ===== */
+.site-nav {
+  background: #ece9d8; /* Win98 灰 */
+  border-bottom: 2px solid #000;
+  padding: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.site-nav a {
+  display: inline-block;
+  padding: 5px 12px;
+  background: linear-gradient(180deg, #fff 0%, #d4d0c8 100%);
+  border: 2px solid #000;
+  box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #808080;
+  color: #000;
+  text-decoration: none;
+  font-size: 13px;
+}
+.site-nav a:hover {
+  background: linear-gradient(180deg, #ffffcc 0%, #ffdd88 100%);
+  color: #c00;
+}
+.site-nav a:active {
+  box-shadow: inset 1px 1px 0 #808080, inset -1px -1px 0 #fff;
+  transform: translate(1px, 1px);
+}
+.site-nav a.cur { background: linear-gradient(180deg, #aaccff 0%, #5588ee 100%); color: #fff; }
 
-  /* ========== Main Container ========== */
-  .page {
-    position: relative;
-    z-index: 5;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 30px 20px 60px;
-  }
+/* ===== 主布局：三栏（左导航+中间内容+右小工具） ===== */
+.main-grid {
+  display: grid;
+  grid-template-columns: 180px 1fr 200px;
+  gap: 8px;
+  padding: 8px;
+  background: #f8f8f0;
+}
 
-  /* ========== Pixel Bling Border Helper ========== */
-  .pixel-border {
-    border: 6px solid #222;
-    box-shadow:
-      6px 0 0 #222, -6px 0 0 #222,
-      0 6px 0 #222, 0 -6px 0 #222,
-      6px 6px 0 #fff, -6px -6px 0 #fff,
-      -6px 6px 0 #fff, 6px -6px 0 #fff,
-      12px 12px 0 #ff6b9d, -12px -12px 0 #48dbfb,
-      -12px 12px 0 #feca57, 12px -12px 0 #ff9ff3,
-      0 0 40px rgba(255, 107, 157, 0.5);
-  }
+/* ===== Win98 风格窗口组件 ===== */
+.win98 {
+  background: #ece9d8;
+  border: 2px solid #000;
+  box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #808080,
+              inset 2px 2px 0 #dfdfdf, inset -2px -2px 0 #404040;
+  margin-bottom: 8px;
+}
+.win-title {
+  background: linear-gradient(180deg, #0055ee 0%, #3377ee 8%, #0033aa 90%, #002288 100%);
+  color: #fff;
+  padding: 3px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: bold;
+  border-bottom: 1px solid #000;
+}
+.win-title .wt-icon { margin-right: 6px; }
+.win-title .wt-btns { display: flex; gap: 3px; }
+.win-title .wt-btn {
+  width: 18px; height: 16px;
+  background: #ece9d8;
+  border: 1px solid #000;
+  box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #808080;
+  font-size: 10px; color: #000;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  line-height: 1;
+}
+.win-title .wt-btn.x { color: #c00; font-weight: bold; }
+.win-body {
+  padding: 8px;
+  font-size: 13px;
+  line-height: 1.7;
+  background: #fff;
+  margin: 4px;
+  border: 2px solid #808080;
+  box-shadow: inset 1px 1px 0 #404040, inset -1px -1px 0 #fff;
+}
 
-  /* ========== Header / Hero ========== */
-  .hero {
-    text-align: center;
-    padding: 50px 30px;
-    background: linear-gradient(180deg, #fff0f6 0%, #ffe4f0 50%, #e0f7ff 100%);
-    margin-bottom: 50px;
-    position: relative;
-    border-radius: 2px;
-  }
-  .hero::before, .hero::after {
-    content: "✨";
-    position: absolute;
-    font-size: 48px;
-    animation: floatStar 3s ease-in-out infinite;
-  }
-  .hero::before { top: 20px; left: 30px; animation-delay: 0s; }
-  .hero::after  { bottom: 20px; right: 30px; animation-delay: 1.5s; }
-  @keyframes floatStar {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50%      { transform: translateY(-15px) rotate(20deg); }
-  }
+/* ===== 左侧：个人信息 ===== */
+.avatar-box {
+  text-align: center;
+  padding: 6px;
+  background: linear-gradient(180deg, #ffe4f0 0%, #ffccdd 100%);
+  border: 2px solid #ff6699;
+  margin-bottom: 8px;
+}
+.avatar-pixel {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 6px;
+  background:
+    linear-gradient(45deg, #ffd700 25%, transparent 25%) 0 0/20px 20px,
+    linear-gradient(-45deg, #ff66aa 25%, transparent 25%) 0 0/20px 20px,
+    linear-gradient(45deg, transparent 75%, #88aaff 75%) 0 0/20px 20px,
+    linear-gradient(-45deg, transparent 75%, #aaffaa 75%) 0 0/20px 20px,
+    #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 56px;
+  border: 2px solid #c00;
+  animation: blinkGlow 1.8s ease-in-out infinite;
+}
+@keyframes blinkGlow {
+  0%,100% { box-shadow: 0 0 0 #ff0066; }
+  50%     { box-shadow: 0 0 12px #ff0066, 0 0 24px #ff0066; }
+}
+.nickname {
+  color: #c00;
+  font-size: 15px;
+  font-weight: bold;
+  font-family: "KaiTi", "楷体", serif;
+  text-decoration: underline dotted #f69;
+}
+.huoxingwen {
+  font-family: "SimSun", serif;
+  color: #660099;
+  font-size: 12px;
+  background: #fff0ff;
+  padding: 4px;
+  border: 1px dashed #c0c;
+  margin: 6px 0;
+  text-align: center;
+  line-height: 1.8;
+}
 
-  .bling-title {
-    font-family: 'Press Start 2P', cursive;
-    font-size: clamp(28px, 5vw, 52px);
-    line-height: 1.4;
-    margin-bottom: 20px;
-    background: linear-gradient(
-      90deg,
-      #ff006e, #fb5607, #ffbe0b, #8338ec, #3a86ff, #06ffa5, #ff006e
-    );
-    background-size: 300% 100%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: rainbowText 4s linear infinite, bounce 2s ease-in-out infinite;
-    text-shadow:
-      3px 3px 0 #fff,
-      6px 6px 0 rgba(255,0,110,0.3);
-    letter-spacing: 2px;
-  }
-  @keyframes rainbowText {
-    0%   { background-position: 0% 50%; }
-    100% { background-position: 300% 50%; }
-  }
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50%      { transform: translateY(-8px); }
-  }
+/* 信息小表 */
+.info-tbl { width: 100%; font-size: 12px; border-collapse: collapse; }
+.info-tbl td {
+  padding: 3px 4px;
+  border-bottom: 1px dotted #ccc;
+  vertical-align: top;
+}
+.info-tbl td:first-child {
+  width: 60px;
+  color: #000080;
+  font-weight: bold;
+  background: #f0f0ff;
+}
+.info-tbl td:last-child { color: #333; }
 
-  .bling-subtitle {
-    font-size: 28px;
-    color: #5f27cd;
-    margin-bottom: 28px;
-    text-shadow: 2px 2px 0 #fff;
-    animation: shimmer 2s ease-in-out infinite;
-  }
-  @keyframes shimmer {
-    0%, 100% { filter: brightness(1); }
-    50%      { filter: brightness(1.3) drop-shadow(0 0 10px #ff9ff3); }
-  }
+/* ===== 访客计数器（经典5位或7位LED样式） ===== */
+.counter-wrap {
+  text-align: center;
+  padding: 8px;
+  background: #000;
+  border: 2px inset #888;
+  margin: 6px 0;
+}
+.counter-label {
+  color: #0f0;
+  font-size: 11px;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+.counter-digits {
+  display: inline-flex;
+  gap: 2px;
+  justify-content: center;
+}
+.digit {
+  width: 20px;
+  height: 30px;
+  background: #111;
+  color: #ff0000;
+  border: 1px solid #444;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 30px;
+  text-align: center;
+  text-shadow: 0 0 4px #ff0000, 0 0 8px #ff0000;
+}
+.counter-today {
+  color: #0ff;
+  font-size: 11px;
+  margin-top: 4px;
+}
 
-  /* ========== Pixel Buttons ========== */
-  .pixel-btn-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-  .pixel-btn {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 12px;
-    padding: 14px 24px;
-    border: none;
-    cursor: pointer;
-    position: relative;
-    color: #fff;
-    text-decoration: none;
-    display: inline-block;
-    transition: transform 0.1s;
-    background: #ff6b9d;
-    box-shadow:
-      inset -4px -4px 0 #c44569,
-      inset  4px  4px 0 #ff9ec2,
-      6px 6px 0 #222;
-  }
-  .pixel-btn:hover   { transform: translate(-2px, -2px); filter: brightness(1.1); }
-  .pixel-btn:active  { transform: translate(4px, 4px); box-shadow: inset -4px -4px 0 #c44569, inset 4px 4px 0 #ff9ec2, 2px 2px 0 #222; }
-  .pixel-btn.cyan    { background: #48dbfb; box-shadow: inset -4px -4px 0 #0abde3, inset 4px 4px 0 #a0eaff, 6px 6px 0 #222; }
-  .pixel-btn.yellow  { background: #feca57; box-shadow: inset -4px -4px 0 #ff9f43, inset 4px 4px 0 #ffe0a3, 6px 6px 0 #222; color: #222; }
-  .pixel-btn.purple  { background: #a55eea; box-shadow: inset -4px -4px 0 #8854d0, inset 4px 4px 0 #d3b4ff, 6px 6px 0 #222; }
+/* 在线人数 */
+.online {
+  text-align: center;
+  font-size: 12px;
+  padding: 4px;
+  background: #e0ffe0;
+  border: 1px solid #090;
+  color: #060;
+  margin: 4px 0;
+}
+.online .num { color: #c00; font-weight: bold; font-size: 14px; }
 
-  /* ========== Section Layout ========== */
-  .section {
-    background: #fff;
-    padding: 36px 30px;
-    margin-bottom: 40px;
-    position: relative;
-    border-radius: 2px;
-  }
+/* ===== 友情链接（经典列表） ===== */
+.links-list { list-style: none; padding: 0; margin: 0; font-size: 12px; }
+.links-list li {
+  padding: 4px 6px;
+  border-bottom: 1px dashed #aac;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><polygon points='2,2 10,6 2,10' fill='%2300c'/></svg>") no-repeat left 8px center;
+  padding-left: 22px;
+}
+.links-list a { color: #00c; text-decoration: underline; }
+.links-list a:visited { color: #800080; }
+.links-list a:hover { color: #c00; background: #ffffcc; }
+.links-list .new::after {
+  content: "NEW!";
+  color: #fff;
+  background: #f00;
+  font-size: 9px;
+  padding: 0 3px;
+  margin-left: 3px;
+  vertical-align: super;
+  animation: blink 1s steps(2) infinite;
+}
+@keyframes blink { 50% { opacity: 0.2; } }
 
-  .section-title {
-    font-family: 'Press Start 2P', cursive;
-    font-size: clamp(18px, 3vw, 26px);
-    text-align: center;
-    margin-bottom: 28px;
-    padding: 14px;
-    background: repeating-linear-gradient(
-      90deg,
-      #ff6b9d 0px, #ff6b9d 20px,
-      #feca57 20px, #feca57 40px,
-      #48dbfb 40px, #48dbfb 60px,
-      #a55eea 60px, #a55eea 80px
-    );
-    color: #fff;
-    text-shadow: 2px 2px 0 #222, 4px 4px 0 rgba(0,0,0,0.2);
-    position: relative;
-  }
-  .section-title::before, .section-title::after {
-    content: "★";
-    margin: 0 14px;
-    color: #fff;
-    animation: spin 3s linear infinite;
-    display: inline-block;
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
+/* ===== 中间主内容 ===== */
+.hero-postcard {
+  background: linear-gradient(180deg, #fff6ff 0%, #ffecf6 50%, #e6f0ff 100%);
+  border: 2px dashed #ff99cc;
+  padding: 12px;
+  margin-bottom: 10px;
+  text-align: center;
+  position: relative;
+}
+.hero-postcard::before, .hero-postcard::after {
+  content: "🌹";
+  position: absolute;
+  font-size: 28px;
+  animation: sway 2.5s ease-in-out infinite;
+}
+.hero-postcard::before { top: 6px; left: 10px; }
+.hero-postcard::after  { bottom: 6px; right: 10px; animation-delay: 1.2s; }
+@keyframes sway {
+  0%,100% { transform: rotate(-10deg); }
+  50%     { transform: rotate(10deg); }
+}
+.hero-title {
+  font-family: "华文彩云", "STCaiyun", "KaiTi", serif;
+  font-size: 26px;
+  color: #cc0066;
+  text-shadow: 1px 1px 0 #fff, 2px 2px 0 #ffcccc;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+.hero-sub {
+  font-size: 14px;
+  color: #336699;
+}
 
-  /* ========== Pixel Cards Grid ========== */
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 36px 28px;
-    padding: 10px;
-  }
+/* 最新日记 表格样式（论坛风） */
+.forum-tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin: 6px 0;
+  background: #fff;
+}
+.forum-tbl th {
+  background: linear-gradient(180deg, #66aaff 0%, #3366cc 100%);
+  color: #fff;
+  padding: 5px 8px;
+  border: 1px solid #003377;
+  text-align: left;
+  font-weight: bold;
+}
+.forum-tbl td {
+  padding: 5px 8px;
+  border: 1px solid #8098c0;
+  color: #000;
+}
+.forum-tbl tr:nth-child(even) td { background: #f0f4fa; }
+.forum-tbl tr:hover td { background: #ffffdd; }
+.forum-tbl .title-cell a { color: #0000c0; text-decoration: underline; }
+.forum-tbl .title-cell a:visited { color: #666; }
+.forum-tbl .hot { color: #c00; font-weight: bold; }
+.forum-tbl .hot::before { content: "🔥"; margin-right: 2px; }
 
-  .pixel-card {
-    background: #fff;
-    border: 4px solid #222;
-    padding: 18px;
-    position: relative;
-    transition: transform 0.25s ease;
-    box-shadow: 8px 8px 0 #222;
-  }
-  .pixel-card::before {
-    content: "";
-    position: absolute;
-    inset: -8px;
-    background: linear-gradient(45deg, #ff6b9d, #feca57, #48dbfb, #a55eea, #ff6b9d);
-    background-size: 400% 400%;
-    animation: rainbowBG 6s ease infinite;
-    z-index: -1;
-    filter: blur(0.5px);
-  }
-  .pixel-card:hover {
-    transform: translate(-4px, -4px) rotate(-1deg);
-    box-shadow: 12px 12px 0 #222, 0 0 30px rgba(255,107,157,0.6);
-  }
+/* 七彩渐变文字（QQ签名风） */
+.rainbow-text {
+  display: inline-block;
+  font-weight: bold;
+  background: linear-gradient(90deg, #c00, #f80, #ed0, #0a0, #08f, #60c, #c00);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbowMove 4s linear infinite;
+}
+@keyframes rainbowMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
 
-  /* Pixel art placeholder image */
-  .pixel-img {
-    width: 100%;
-    height: 140px;
-    margin-bottom: 16px;
-    background:
-      linear-gradient(135deg, #ffcccc 25%, transparent 25%) 0 0/20px 20px,
-      linear-gradient(225deg, #ffcccc 25%, transparent 25%) 0 0/20px 20px,
-      linear-gradient(315deg, #ffcccc 25%, transparent 25%) 0 0/20px 20px,
-      linear-gradient(45deg,  #ffcccc 25%, transparent 25%) 0 0/20px 20px,
-      linear-gradient(180deg, #fff0f6 0%, #e0f7ff 100%);
-    position: relative;
-    border: 3px dashed #222;
-    overflow: hidden;
-  }
-  .pixel-img .emoji {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 72px;
-    animation: wiggle 2.5s ease-in-out infinite;
-  }
-  @keyframes wiggle {
-    0%, 100% { transform: rotate(-5deg) scale(1); }
-    50%      { transform: rotate(5deg)  scale(1.08); }
-  }
+/* 日记内容卡 */
+.diary-entry {
+  padding: 8px 10px;
+  border-left: 4px solid #ff6699;
+  background: #fffafc;
+  margin: 6px 0;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.diary-entry .d-title {
+  color: #000080;
+  font-weight: bold;
+  font-size: 14px;
+  border-bottom: 1px dotted #999;
+  padding-bottom: 2px;
+  margin-bottom: 4px;
+}
+.diary-entry .d-meta {
+  font-size: 11px;
+  color: #888;
+  margin-bottom: 4px;
+}
+.diary-entry .d-meta .sep { margin: 0 6px; color: #ccc; }
 
-  .card-title {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 13px;
-    color: #ff006e;
-    margin-bottom: 10px;
-    padding-bottom: 8px;
-    border-bottom: 3px dotted #feca57;
-    text-shadow: 1px 1px 0 #fff;
-  }
-  .card-text {
-    font-size: 20px;
-    line-height: 1.4;
-    color: #333;
-  }
+/* ===== 右侧：音乐播放器 + 日历 + 天气 ===== */
+/* Winamp/千千静听风格播放器 */
+.player {
+  background: #2a2a3a;
+  color: #0f0;
+  padding: 8px;
+  font-family: "Courier New", monospace;
+  border: 2px solid #000;
+  box-shadow: inset 2px 2px 0 #555, inset -2px -2px 0 #111;
+}
+.pl-title {
+  font-size: 11px;
+  color: #0ff;
+  margin-bottom: 4px;
+  letter-spacing: 1px;
+}
+.pl-songname {
+  background: #000;
+  color: #0f0;
+  padding: 4px 6px;
+  border: 1px inset #0a0;
+  font-size: 12px;
+  margin-bottom: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.pl-songname .s-text {
+  display: inline-block;
+  animation: songScroll 12s linear infinite;
+  padding-left: 100%;
+}
+@keyframes songScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+.pl-spectrum {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 24px;
+  background: #000;
+  padding: 3px;
+  margin-bottom: 6px;
+  border: 1px inset #0a0;
+}
+.pl-spectrum .bar {
+  flex: 1;
+  background: linear-gradient(180deg, #0f0 0%, #0f0 60%, #ff0 80%, #f00 100%);
+  animation: spectrum 0.6s ease-in-out infinite alternate;
+}
+.pl-spectrum .bar:nth-child(1) { height: 60%; animation-delay: -0.1s; }
+.pl-spectrum .bar:nth-child(2) { height: 90%; animation-delay: -0.3s; }
+.pl-spectrum .bar:nth-child(3) { height: 45%; animation-delay: -0.5s; }
+.pl-spectrum .bar:nth-child(4) { height: 75%; animation-delay: -0.2s; }
+.pl-spectrum .bar:nth-child(5) { height: 100%; animation-delay: -0.4s; }
+.pl-spectrum .bar:nth-child(6) { height: 55%; animation-delay: -0.05s; }
+.pl-spectrum .bar:nth-child(7) { height: 85%; animation-delay: -0.35s; }
+.pl-spectrum .bar:nth-child(8) { height: 35%; animation-delay: -0.25s; }
+.pl-spectrum .bar:nth-child(9) { height: 70%; animation-delay: -0.45s; }
+.pl-spectrum .bar:nth-child(10) { height: 50%; animation-delay: -0.15s; }
+@keyframes spectrum {
+  0%   { transform: scaleY(0.2); }
+  100% { transform: scaleY(1); }
+}
+.pl-controls {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+.pl-btn {
+  background: linear-gradient(180deg, #ddd 0%, #888 100%);
+  border: 1px solid #000;
+  box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #555;
+  padding: 3px 8px;
+  font-size: 11px;
+  color: #000;
+  cursor: pointer;
+}
+.pl-btn:active {
+  box-shadow: inset 1px 1px 0 #555, inset -1px -1px 0 #fff;
+  transform: translate(1px,1px);
+}
+.pl-btn.pl-play { color: #060; font-weight: bold; }
+.pl-btn.pl-stop { color: #a00; font-weight: bold; }
+.pl-time {
+  font-size: 11px;
+  text-align: center;
+  color: #ff0;
+  margin-top: 4px;
+}
 
-  /* ========== Sparkle Text Decorations ========== */
-  .sparkle-inline::before { content: "✦ "; color: #feca57; animation: twinkle 1s infinite; display: inline-block; }
-  .sparkle-inline::after  { content: " ✦"; color: #feca57; animation: twinkle 1s infinite 0.5s; display: inline-block; }
+/* 迷你日历 */
+.mini-cal {
+  font-size: 11px;
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+}
+.mini-cal caption {
+  background: #0066cc;
+  color: #fff;
+  font-weight: bold;
+  padding: 3px;
+  border: 1px solid #000;
+}
+.mini-cal th {
+  background: #eee;
+  color: #333;
+  padding: 2px;
+  border: 1px solid #aaa;
+}
+.mini-cal th.sun { color: #c00; }
+.mini-cal th.sat { color: #00c; }
+.mini-cal td {
+  padding: 2px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+}
+.mini-cal td.empty { background: #f5f5f5; }
+.mini-cal td.today {
+  background: #c00;
+  color: #fff;
+  font-weight: bold;
+  animation: todayBlink 1s steps(2) infinite;
+}
+@keyframes todayBlink { 50% { background: #ff6600; } }
+.mini-cal td.sun { color: #c00; }
+.mini-cal td.sat { color: #00c; }
+.mini-cal td:hover { background: #ffc; }
 
-  /* ========== Glitter Text Box ========== */
-  .glitter-box {
-    padding: 24px;
-    background:
-      radial-gradient(circle at 20% 30%, #ff6b9d 2px, transparent 3px),
-      radial-gradient(circle at 70% 60%, #48dbfb 2px, transparent 3px),
-      radial-gradient(circle at 40% 80%, #feca57 2px, transparent 3px),
-      radial-gradient(circle at 90% 20%, #a55eea 2px, transparent 3px),
-      linear-gradient(180deg, #fff8e7 0%, #ffe0f0 100%);
-    background-size: 40px 40px, 60px 60px, 50px 50px, 70px 70px, auto;
-    border: 4px double #ff006e;
-    font-size: 22px;
-    line-height: 1.5;
-    color: #5f27cd;
-    text-align: center;
-  }
+/* 天气 */
+.weather-box {
+  background: linear-gradient(180deg, #ccffff 0%, #99ccff 100%);
+  border: 1px solid #6699cc;
+  padding: 6px;
+  text-align: center;
+  font-size: 12px;
+}
+.weather-box .big-icon { font-size: 40px; line-height: 1; }
+.weather-box .t { font-size: 22px; font-weight: bold; color: #0066cc; }
+.weather-box .desc { color: #003366; }
 
-  /* ========== Pixel Badge / Stamp ========== */
-  .badge-row { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-top: 24px; }
-  .pixel-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 16px;
-    background: #feca57;
-    border: 3px solid #222;
-    box-shadow: 4px 4px 0 #222;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 10px;
-    color: #222;
-    transform: rotate(-3deg);
-    animation: stamp 2.5s ease-in-out infinite;
-  }
-  .pixel-badge:nth-child(2) { background: #48dbfb; transform: rotate(2deg); animation-delay: 0.3s; }
-  .pixel-badge:nth-child(3) { background: #ff6b9d; color: #fff; transform: rotate(-1deg); animation-delay: 0.6s; }
-  .pixel-badge:nth-child(4) { background: #a55eea; color: #fff; transform: rotate(3deg); animation-delay: 0.9s; }
-  @keyframes stamp {
-    0%, 100% { transform: rotate(var(--r, -3deg)) scale(1); }
-    50%      { transform: rotate(var(--r, -3deg)) scale(1.08); }
-  }
+/* 投票 / 问卷调查 */
+.poll-title { font-weight: bold; color: #000080; margin-bottom: 4px; font-size: 13px; }
+.poll-opt { display: block; font-size: 12px; padding: 2px 0; }
+.poll-opt input { margin-right: 5px; }
+.poll-btn-wrap { margin-top: 6px; }
+.old-btn {
+  background: linear-gradient(180deg, #fff 0%, #ccc 100%);
+  border: 2px solid #000;
+  box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #808080;
+  padding: 3px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  font-family: "SimSun", serif;
+}
+.old-btn:active {
+  box-shadow: inset 1px 1px 0 #808080, inset -1px -1px 0 #fff;
+  transform: translate(1px,1px);
+}
+.old-btn.primary { background: linear-gradient(180deg, #ffdd88 0%, #ff9933 100%); }
 
-  /* ========== Marquee Scrolling Blingee Bar ========== */
-  .marquee {
-    overflow: hidden;
-    white-space: nowrap;
-    background: #222;
-    border-top: 4px solid #ff6b9d;
-    border-bottom: 4px solid #48dbfb;
-    padding: 14px 0;
-    margin-bottom: 40px;
-    position: relative;
-    z-index: 5;
-  }
-  .marquee-inner {
-    display: inline-block;
-    animation: scrollMarquee 20s linear infinite;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 14px;
-    color: #fff;
-  }
-  .marquee-inner span { margin: 0 28px; }
-  .marquee-inner .m-pink   { color: #ff6b9d; }
-  .marquee-inner .m-yellow { color: #feca57; }
-  .marquee-inner .m-cyan   { color: #48dbfb; }
-  .marquee-inner .m-purple { color: #a55eea; }
-  @keyframes scrollMarquee {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
+/* ===== 留言板（Q-Zone 风） ===== */
+.guestbook-area {
+  padding: 8px;
+}
+.gb-post {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 8px;
+  padding: 8px;
+  border: 1px solid #6699cc;
+  background: #f0f6ff;
+  margin-bottom: 8px;
+  align-items: start;
+}
+.gb-post .gb-avatar {
+  background: #fff;
+  border: 1px solid #333;
+  width: 76px;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  background: linear-gradient(135deg, #ffffcc, #ffccff);
+}
+.gb-post .gb-head { font-size: 12px; color: #666; border-bottom: 1px dotted #99c; padding-bottom: 2px; margin-bottom: 4px; }
+.gb-post .gb-head .user { color: #00c; font-weight: bold; text-decoration: underline; }
+.gb-post .gb-body { font-size: 13px; line-height: 1.6; color: #000; }
+.gb-floor {
+  display: inline-block;
+  background: #ff6600;
+  color: #fff;
+  font-size: 10px;
+  padding: 1px 5px;
+  margin-left: 4px;
+  vertical-align: middle;
+}
 
-  /* ========== Guestbook Style Form ========== */
-  .guestbook {
-    max-width: 560px;
-    margin: 0 auto;
-  }
-  .guestbook label {
-    display: block;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 11px;
-    color: #ff006e;
-    margin-bottom: 8px;
-    margin-top: 16px;
-  }
-  .guestbook input, .guestbook textarea {
-    width: 100%;
-    padding: 12px;
-    font-family: 'VT323', monospace;
-    font-size: 22px;
-    border: 4px solid #222;
-    background: #fff8e7;
-    box-shadow: inset 0 0 0 2px #fff, inset 0 0 0 4px #feca57;
-    outline: none;
-    transition: all 0.15s;
-  }
-  .guestbook input:focus, .guestbook textarea:focus {
-    background: #e0f7ff;
-    box-shadow: inset 0 0 0 2px #fff, inset 0 0 0 4px #48dbfb, 0 0 20px rgba(72,219,251,0.5);
-  }
-  .guestbook textarea { min-height: 120px; resize: vertical; }
-  .guestbook button {
-    margin-top: 20px;
-    width: 100%;
-    justify-content: center;
-  }
+/* ===== 页脚 ===== */
+.site-footer {
+  background: #000080;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  font-size: 12px;
+  border-top: 2px solid #000;
+  line-height: 1.9;
+}
+.site-footer .sep { color: #6699cc; margin: 0 6px; }
+.site-footer a { color: #99ccff; text-decoration: underline; }
+.site-footer .powered { color: #999; font-size: 11px; margin-top: 6px; }
 
-  /* ========== Footer ========== */
-  .footer {
-    text-align: center;
-    padding: 30px 20px;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 11px;
-    color: #fff;
-    text-shadow: 2px 2px 0 #222;
-    position: relative;
-    z-index: 5;
-    line-height: 1.8;
-  }
-  .footer-hearts { font-size: 20px; letter-spacing: 8px; margin: 10px 0; animation: heartbeat 1.2s ease-in-out infinite; }
-  @keyframes heartbeat {
-    0%, 100% { transform: scale(1); }
-    25%      { transform: scale(1.15); }
-    50%      { transform: scale(0.95); }
-  }
+/* ===== 打字效果（页面欢迎语） ===== */
+.typing-line {
+  background: #000;
+  color: #0f0;
+  font-family: "Courier New", monospace;
+  font-size: 13px;
+  padding: 8px 10px;
+  border: 2px solid #0a0;
+  margin: 6px 0;
+  min-height: 34px;
+  white-space: pre-wrap;
+  line-height: 1.5;
+}
+.typing-line .cursor {
+  display: inline-block;
+  width: 8px;
+  background: #0f0;
+  color: #000;
+  animation: cursorBlink 0.8s steps(2) infinite;
+  margin-left: 2px;
+}
+@keyframes cursorBlink { 50% { opacity: 0; } }
 
-  /* ========== Cursor Click Burst ========== */
-  .click-burst {
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    animation: burst 0.7s ease-out forwards;
-  }
-  @keyframes burst {
-    0%   { transform: translate(-50%, -50%) scale(0); opacity: 1; box-shadow: 0 0 0 0 #fff; }
-    100% { transform: translate(-50%, -50%) scale(8); opacity: 0; box-shadow: 0 0 0 20px transparent; }
-  }
+/* ===== 网络蚂蚁/FlashGet 风格浮动下载广告（小） ===== */
+.floating-ad {
+  position: fixed;
+  right: 8px;
+  bottom: 8px;
+  width: 150px;
+  background: #ffffcc;
+  border: 2px solid #c00;
+  padding: 6px;
+  font-size: 11px;
+  z-index: 999;
+  box-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+}
+.floating-ad .ad-x {
+  float: right;
+  background: #c00;
+  color: #fff;
+  width: 16px; height: 16px;
+  line-height: 14px;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 12px;
+  border: 1px solid #000;
+}
+.floating-ad .ad-title {
+  font-weight: bold;
+  color: #c00;
+  margin-bottom: 4px;
+  font-size: 12px;
+  animation: blink 1s steps(2) infinite;
+}
 
-  /* ========== Responsive ========== */
-  @media (max-width: 600px) {
-    .page { padding: 16px 10px 40px; }
-    .hero { padding: 30px 16px; }
-    .section { padding: 24px 16px; }
-    .pixel-btn { font-size: 10px; padding: 12px 16px; }
-    .bling-title { letter-spacing: 1px; }
-  }
+/* ===== 响应式（窄屏变两栏/单栏） ===== */
+@media (max-width: 980px) {
+  .page-shell { width: auto; margin: 0; }
+  .main-grid { grid-template-columns: 160px 1fr; }
+  .right-col { display: none; }
+}
+@media (max-width: 640px) {
+  .main-grid { grid-template-columns: 1fr; }
+  .left-col { order: 2; }
+  .center-col { order: 1; }
+}
 </style>
+
+<!-- ======== 免费后端：Supabase（PostgreSQL 免费层）CDN ======== -->
+<!-- 配置方法：在下方 SUPABASE_CONFIG 填入自己项目的 URL 和 anon key；
+     如果留空，会自动降级到浏览器 localStorage，功能照样可用 -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<style>
+  .backend-badge{
+    display:inline-block;padding:3px 8px;border:2px solid #000;
+    box-shadow:inset 1px 1px 0 #fff,inset -1px -1px 0 #888;
+    font-size:11px;font-family:SimSun;cursor:default;vertical-align:middle;margin-left:6px;
+  }
+  .backend-badge.ok{ background:#c8f7c5;color:#060;}
+  .backend-badge.local{ background:#fff0b3;color:#a60;}
+  .backend-badge.err{ background:#ffdede;color:#c00;}
+  .gb-list-wrap{margin:0; padding:0;}
+  .poll-percent-wrap{display:inline-flex;align-items:center;gap:4px;margin-left:8px;}
+  .poll-percent-wrap > b{font-size:11px;color:#333;font-weight:normal;}
+  .poll-percent{
+    display:inline-block;height:10px;vertical-align:middle;
+    background:linear-gradient(90deg,#ffcc66,#ff6600);
+    border:1px solid #000;box-shadow:inset 0 1px 0 #fff8;
+    max-width:120px;min-width:0;
+  }
+  .floor-colors{background:#c00;}
+</style>
+
 </head>
 <body>
 
-<!-- Falling sparkles background -->
-<div id="sparkle-bg"></div>
+<!-- 页面外壳 -->
+<div class="page-shell">
 
-<!-- Top marquee -->
-<div class="marquee">
-  <div class="marquee-inner" id="marqueeInner"></div>
+  <!-- 顶部 Banner -->
+  <div class="site-banner">
+    <div class="banner-inner">
+      <div>
+        <div class="site-title">❄冰蝴蝶的温馨小窝❄</div>
+        <div class="banner-tagline">~ 个人主页 HomePage since 2003 · 用 FrontPage 精心制作 ~</div>
+      </div>
+      <div class="banner-qq">
+        📧 联系我 <b>QQ: 123456789</b><br>
+        ♪ 加我时请注明：来自个人主页
+      </div>
+    </div>
+
+    <!-- 跑马灯 -->
+    <div class="marquee-ribbon">
+      <div class="mr-inner" id="mrInner"></div>
+    </div>
+  </div>
+
+
+      <div style="padding:6px 16px;background:#ece9d8;border-bottom:1px dashed #888;text-align:right;font-size:12px;">
+        🗄 数据存储后端：
+        <span id="backendBadge" class="backend-badge local">正在连接...</span>
+        <span id="backendHint" style="color:#555;margin-left:8px;font-size:11px;"></span>
+      </div>
+
+  <!-- 主导航条 -->
+  <div class="site-nav">
+    <a href="#" class="cur">🏠 首页</a>
+    <a href="#">📔 我的日记</a>
+    <a href="#">📷 我的相册</a>
+    <a href="#">🎵 音乐盒</a>
+    <a href="#">✍ 留言板</a>
+    <a href="#">🔗 友情链接</a>
+    <a href="#">📊 访客统计</a>
+    <a href="#">📧 给我写信</a>
+  </div>
+
+  <!-- 主体三栏 -->
+  <div class="main-grid">
+
+    <!-- 左侧栏 -->
+    <div class="left-col">
+
+      <!-- 个人资料窗口 -->
+      <div class="win98">
+        <div class="win-title">
+          <span><span class="wt-icon">👤</span>个人资料</span>
+          <span class="wt-btns">
+            <span class="wt-btn">_</span><span class="wt-btn">▢</span><span class="wt-btn x">×</span>
+          </span>
+        </div>
+        <div class="win-body" style="padding:6px;">
+          <div class="avatar-box">
+            <div class="avatar-pixel">🦋</div>
+            <div class="nickname">→冰雪儿←</div>
+            <div style="font-size:11px;color:#666;margin-top:2px;">♀ 女生 · 北京市</div>
+          </div>
+          <div class="huoxingwen">
+            ≧﹏≦ 偶dě伈情恏恏哦~~<br>
+            願兲使dē翅膀<br>
+            詠遠垨護著伱 ♡
+          </div>
+          <table class="info-tbl">
+            <tr><td>昵称</td><td>冰蝴蝶 ★雪儿★</td></tr>
+            <tr><td>性别</td><td>♀ 美少女</td></tr>
+            <tr><td>生日</td><td>1988-06-15 双子座</td></tr>
+            <tr><td>血型</td><td>O型 (╯3╰)</td></tr>
+            <tr><td>星座</td><td>♊ 雙子座</td></tr>
+            <tr><td>职业</td><td>大学生 / 平面模特</td></tr>
+            <tr><td>偶像</td><td>周杰伦, S.H.E, 蔡依林</td></tr>
+            <tr><td>爱好</td><td>上网、听歌、逛街、吃零食</td></tr>
+            <tr><td>格言</td><td class="rainbow-text">走自己的路，让别人说去吧！</td></tr>
+          </table>
+
+          <!-- 访客计数器 -->
+          <div class="counter-wrap">
+            <div class="counter-label">★ 您是第 ★</div>
+            <div class="counter-digits" id="counter">
+              <span class="digit">0</span><span class="digit">0</span>
+              <span class="digit">5</span><span class="digit">2</span>
+              <span class="digit">0</span><span class="digit">1</span>
+              <span class="digit">8</span>
+            </div>
+            <div class="counter-label" style="margin-top:4px;">★ 位访客 ★</div>
+            <div class="counter-today">今日访问：<span id="todayCount">128</span> 人</div>
+          </div>
+
+          <!-- 在线人数 -->
+          <div class="online">
+            🟢 当前在线：<span class="num" id="onlineNum">37</span> 人
+          </div>
+        </div>
+      </div>
+
+      <!-- 友情链接 -->
+      <div class="win98">
+        <div class="win-title">
+          <span><span class="wt-icon">🔗</span>友情链接</span>
+          <span class="wt-btns">
+            <span class="wt-btn">_</span><span class="wt-btn">▢</span><span class="wt-btn x">×</span>
+          </span>
+        </div>
+        <div class="win-body" style="padding:0;">
+          <ul class="links-list">
+            <li><a href="#" class="new">新浪爱问 iask.com</a></li>
+            <li><a href="#">网易 163.com</a></li>
+            <li><a href="#" class="new">搜狐 ChinaRen</a></li>
+            <li><a href="#">腾讯 QQ.com</a></li>
+            <li><a href="#">百度一下 Baidu</a></li>
+            <li><a href="#" class="new">淘宝网 Taobao</a></li>
+            <li><a href="#">天涯社区</a></li>
+            <li><a href="#">猫扑大杂烩</a></li>
+            <li><a href="#">西祠胡同</a></li>
+            <li><a href="#" class="new">博客大巴 BlogBus</a></li>
+            <li><a href="#">榕树下 文学</a></li>
+            <li><a href="#"> chinaren 校友录</a></li>
+            <li><a href="#" class="new">【好友】紫色风铃</a></li>
+            <li><a href="#">【好友】月光宝盒</a></li>
+            <li><a href="#">【好友】星晴小筑</a></li>
+          </ul>
+        </div>
+      </div>
+
+    </div><!-- /左栏 -->
+
+    <!-- 中间主内容 -->
+    <div class="center-col">
+
+      <!-- 欢迎卡片 -->
+      <div class="win98">
+        <div class="win-title">
+          <span><span class="wt-icon">🏡</span>首页 · 欢迎光临寒舍</span>
+          <span class="wt-btns">
+            <span class="wt-btn">_</span><span class="wt-btn">▢</span><span class="wt-btn x">×</span>
+          </span>
+        </div>
+        <div class="win-body" style="padding:6px;">
+          <div class="hero-postcard">
+            <div class="hero-title">❀ 歡迎光臨我的個人主頁 ❀</div>
+            <div class="hero-sub">
+              📅 今天是 <b id="todayStr"></b>　🌤️ 离我生日还有 <b id="daysToBD">294</b> 天
+            </div>
+          </div>
+
+          <!-- 打字效果 -->
+          <div class="typing-line" id="typingLine"></div>
+
+          <!-- 最新日志列表 -->
+          <table class="forum-tbl" style="margin-top:8px;">
+            <tr>
+              <th style="width:50px;">编号</th>
+              <th>日志标题</th>
+              <th style="width:70px;">分类</th>
+              <th style="width:110px;">日期</th>
+              <th style="width:50px;">点击</th>
+            </tr>
+            <tr>
+              <td>058</td>
+              <td class="title-cell"><a href="#" class="hot">【情感】如果微笑是一種武器，我願意為你投降 ♡</a></td>
+              <td>心情日记</td>
+              <td>2006-08-24</td>
+              <td>238</td>
+            </tr>
+            <tr>
+              <td>057</td>
+              <td class="title-cell"><a href="#">【生活】今天去香山看红叶啦！（附照片12张）</a></td>
+              <td>流水帐</td>
+              <td>2006-08-21</td>
+              <td>412</td>
+            </tr>
+            <tr>
+              <td>056</td>
+              <td class="title-cell"><a href="#">【音乐】推荐本周单曲循环 TOP 10</a></td>
+              <td>音乐分享</td>
+              <td>2006-08-18</td>
+              <td>891</td>
+            </tr>
+            <tr>
+              <td>055</td>
+              <td class="title-cell"><a href="#" class="hot">【吐槽】期末考试好难啊 T_T 求安慰</a></td>
+              <td>校园生活</td>
+              <td>2006-08-15</td>
+              <td>1,204</td>
+            </tr>
+            <tr>
+              <td>054</td>
+              <td class="title-cell"><a href="#">【教程】教你用 FrontPage 做漂亮的个人主页~</a></td>
+              <td>网络技术</td>
+              <td>2006-08-10</td>
+              <td>3,567</td>
+            </tr>
+          </table>
+
+          <!-- 两篇精选日记 -->
+          <div class="diary-entry">
+            <div class="d-title">🎀 8月24日 星期四 晴转多云 ☀→⛅</div>
+            <div class="d-meta">
+              作者：冰蝴蝶 <span class="sep">|</span>
+              分类：<span style="color:#060;">心情日记</span> <span class="sep">|</span>
+              阅读(238) <span class="sep">|</span>
+              <span style="color:#c00;">评论(56)</span>
+            </div>
+            <div class="d-body">
+              　　今天的天空很藍，就像剛洗過一樣。我坐在學校操場的台階上，耳機裏循環播放著周杰倫的《七里香》，那一刻，仿佛整個世界都安靜了下來…
+              <br><br>
+              　　下午收到了他寄來的信，普通的白色信封，字跡卻異常工整。心跳加速的那一刻，我終於明白，原來暗戀一個人，就像喝了一杯冰冰的檸檬茶，酸澀中透著甜甜的味道。
+              <span class="rainbow-text">♡ 希望明天的我，可以更勇敢一點 ♡</span>
+              <br><br>
+              　　對了，今天食堂的紅燒肉超級好吃！！！推薦指數：⭐⭐⭐⭐⭐
+            </div>
+          </div>
+
+          <div class="diary-entry" style="border-left-color:#66aaff; background:#f6faff;">
+            <div class="d-title">🎧 本周单曲循环 · TOP 10 推荐</div>
+            <div class="d-meta">
+              作者：冰蝴蝶 <span class="sep">|</span>
+              分类：<span style="color:#a60;">音乐分享</span> <span class="sep">|</span>
+              阅读(891) <span class="sep">|</span>
+              <span style="color:#c00;">评论(142)</span>
+            </div>
+            <div class="d-body">
+              1. 周杰伦 - 七里香 ♪♪♪<br>
+              2. S.H.E - 不想长大<br>
+              3. 蔡依林 - 舞娘 💃<br>
+              4. 五月天 - 倔强<br>
+              5. 孙燕姿 - 遇见 ✨<br>
+              6. 林俊杰 - 江南<br>
+              7. 张韶涵 - 隐形的翅膀 👼<br>
+              8. 潘玮柏 - 反转地球<br>
+              9. 飞儿乐团 - Lydia<br>
+              10. 光良 - 童话 <span style="color:#c00;">♡ 超感动！♡</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 留言板 -->
+      <div class="win98">
+        <div class="win-title">
+          <span><span class="wt-icon">✍</span>留言板 · 大家都在说什么？</span>
+          <span class="wt-btns">
+            <span class="wt-btn">_</span><span class="wt-btn">▢</span><span class="wt-btn x">×</span>
+          </span>
+        </div>
+        <div class="win-body guestbook-area">
+<div class="gb-list-wrap" id="gbList">
+          <div class="gb-post">
+            <div class="gb-avatar">🐱</div>
+            <div>
+              <div class="gb-head">
+                <span class="user">§紫风铃§</span> (123.45.67.89)
+                <span class="gb-floor">沙发 1F</span>
+                <span style="float:right;">2006-08-24 14:22</span>
+              </div>
+              <div class="gb-body">
+                哇~~新主页好漂亮哦！蝴蝶的设计越来越棒了！+U +U！<br>
+                对了，你推荐的《隐形的翅膀》我已经开始学了~ ♪(´▽`)
+              </div>
+            </div>
+          </div>
+
+          <div class="gb-post">
+            <div class="gb-avatar" style="background:linear-gradient(135deg,#cceeff,#cce);">🌙</div>
+            <div>
+              <div class="gb-head">
+                <span class="user">月光剑客</span> (202.108.xx.xx)
+                <span class="gb-floor" style="background:#060;">板凳 2F</span>
+                <span style="float:right;">2006-08-24 15:05</span>
+              </div>
+              <div class="gb-body">
+                偶来踩踩~~~记得回访哦！我在百度空间也开新主页了~<br>
+                周杰伦那首《七里香》真的百听不厌，握个爪！o(≧v≦)o
+              </div>
+            </div>
+          </div>
+
+          <div class="gb-post">
+            <div class="gb-avatar" style="background:linear-gradient(135deg,#ffe,#ffb);">🐻</div>
+            <div>
+              <div class="gb-head">
+                <span class="user">淘气小熊</span> (61.50.xx.xx)
+                <span class="gb-floor" style="background:#c60;">地板 3F</span>
+                <span style="float:right;">2006-08-24 16:48</span>
+              </div>
+              <div class="gb-body">
+                今天来的有点晚~ <span class="rainbow-text">不过留言还是要留的！</span><br>
+                蝴蝶姐姐！！我也要学做 FrontPage 教程，下次开课叫我！(>ω<)
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /gbList -->
+          <!-- 发表留言 -->
+          <div style="margin-top:10px; padding:8px; background:#f5f5f5; border:1px solid #aaa;">
+            <div style="font-weight:bold; color:#006; margin-bottom:5px;">📝 我要留言：</div>
+            <table style="width:100%; font-size:13px;">
+              <tr>
+                <td style="width:60px;">昵称：</td>
+                <td><input id="gbUser" type="text" style="width:180px; border:2px inset #999; padding:3px;" value="匿名网友"></td>
+                <td style="width:120px; text-align:right;">表情：
+                  <select id="gbFace" style="border:1px solid #999;">
+                    <option>😊 微笑</option>
+                    <option>😂 大笑</option>
+                    <option>😭 哭泣</option>
+                    <option>😠 生气</option>
+                    <option>💕 爱心</option>
+                    <option>🌹 玫瑰</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>内容：</td>
+                <td colspan="2" style="padding-top:4px;">
+                  <textarea id="gbMsg" rows="3" style="width:100%; border:2px inset #999; padding:3px; font-family:SimSun;" placeholder="写点什么给蝴蝶~ (最多200字)"></textarea>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td colspan="2" style="padding-top:6px;">
+                  <button class="old-btn primary" onclick="submitGB()">✍ 提交留言</button>
+                  <button class="old-btn" onclick="document.getElementById('gbMsg').value='';">🗑 清空</button>
+                  <span id="gbResult" style="margin-left:12px; color:#060; font-weight:bold;"></span>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /中栏 -->
+
+    <!-- 右侧栏 -->
+    <div class="right-col">
+
+      <!-- 音乐播放器（千千静听风） -->
+      <div class="win98">
+        <div class="win-title">
+          <span><span class="wt-icon">🎵</span>千千静听 · 播放中</span>
+          <span class="wt-btns">
+            <span class="wt-btn">_</span><span class="wt-btn">▢</span><span class="wt-btn x">×</span>
+          </span>
+        </div>
+        <div class="win-body" style="padding:4px; background:#222;">
+          <div class="player">
+            <div class="pl-title">♪ TTPlayer v5.0.1 ♪</div>
+            <div class="pl-songname">
+              <span class="s-text" id="songScroll">
+                周杰伦 - 七里香 (完整版) · 专辑《七里香》2004 · 4:59
+                ｜　♡ 献给蝴蝶，希望你喜欢这首歌 ♡
+              </span>
+            </div>
+            <div class="pl-spectrum" id="plSpec">
+              <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+              <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+              <div class="bar"></div><div class="bar"></div>
+            </div>
+            <div class="pl-controls">
+              <button class="pl-btn">⏮</button>
+              <button class="pl-btn pl-play" id="playBtn" onclick="togglePlay()">▶</button>
+              <button class="pl-btn pl-stop" onclick="stopPlay()">⏹</button>
+              <button class="pl-btn">⏭</button>
+            </div>
+            <div class="pl-time" id="plTime">01:23 / 04:59</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 迷你日历 -->
+      <div class="win98">
+        <div class="win-title">
+          <span><span class="wt-icon">📅</span>万年历</span>
+          <span class="wt-btns">
+            <span class="wt-btn">_</span><span class="wt-btn">▢</span><span class="wt-btn x">×</span>
+          </span>
+        </div>
+        <div class="win-body" style="padding:4px;">
+          <table class="mini-cal" id="miniCal"></table>
+        </div>
+      </div>
+
+      <!-- 天气预报 -->
+      <div class="win98">
+        <div class="win-title">
+          <span><span class="wt-icon">🌤</span>天气预报</span>
+          <span class="wt-btns">
+            <span class="wt-btn">_</span><span class="wt-btn">▢</span><span class="wt-btn x">×</span>
+          </span>
+        </div>
+        <div class="win-body" style="padding:4px;">
+          <div class="weather-box">
+            <div style="font-size:12px;color:#036;font-weight:bold;">🏙 北京</div>
+            <div class="big-icon">☀️</div>
+            <div class="t">28°C / 21°C</div>
+            <div class="desc">晴转多云 · 微风</div>
+            <div style="font-size:11px;color:#036;margin-top:4px;">紫外线：中等　穿衣：短袖</div>
+          </div>
+          <div style="display:flex; gap:4px; margin-top:6px; font-size:11px; text-align:center;">
+            <div style="flex:1; background:#f5f5f5; padding:4px; border:1px solid #ccc;">
+              五<br>🌤<br><b>29/22</b>
+            </div>
+            <div style="flex:1; background:#f5f5f5; padding:4px; border:1px solid #ccc;">
+              六<br>⛅<br><b>27/20</b>
+            </div>
+            <div style="flex:1; background:#f5f5f5; padding:4px; border:1px solid #ccc;">
+              日<br>🌧<br><b>24/19</b>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 小调查 -->
+      <div class="win98">
+        <div class="win-title">
+          <span><span class="wt-icon">📊</span>本周小调查</span>
+          <span class="wt-btns">
+            <span class="wt-btn">_</span><span class="wt-btn">▢</span><span class="wt-btn x">×</span>
+          </span>
+        </div>
+        <div class="win-body" style="padding:8px;">
+          <div class="poll-title">Q: 你喜欢周杰伦的哪首歌？</div>
+                    <label class="poll-opt"><input type="radio" name="poll" value="0">七里香<span class="poll-percent-wrap"><span class="poll-percent" id="pollBar0"></span><b id="pollPct0">0%</b></span></label>
+          <label class="poll-opt"><input type="radio" name="poll" value="1">青花瓷<span class="poll-percent-wrap"><span class="poll-percent" id="pollBar1"></span><b id="pollPct1">0%</b></span></label>
+          <label class="poll-opt"><input type="radio" name="poll" value="2">双截棍<span class="poll-percent-wrap"><span class="poll-percent" id="pollBar2"></span><b id="pollPct2">0%</b></span></label>
+          <label class="poll-opt"><input type="radio" name="poll" value="3">晴天<span class="poll-percent-wrap"><span class="poll-percent" id="pollBar3"></span><b id="pollPct3">0%</b></span></label>
+          <label class="poll-opt"><input type="radio" name="poll" value="4">其他<span class="poll-percent-wrap"><span class="poll-percent" id="pollBar4"></span><b id="pollPct4">0%</b></span></label>
+          <div style="font-size:11px; color:#666; margin-top:4px;">已有 <b id="pollTotal">0</b> 人参与</div>
+          <div class="poll-btn-wrap">
+            <button class="old-btn" onclick="votePoll()">✅ 投票</button>
+            <button class="old-btn">📊 查看结果</button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /右栏 -->
+
+  </div><!-- /main-grid -->
+
+  <!-- 页脚 -->
+  <div class="site-footer">
+    <div>
+      <a href="#">关于我</a><span class="sep">|</span>
+      <a href="#">联系方式</a><span class="sep">|</span>
+      <a href="#">给我留言</a><span class="sep">|</span>
+      <a href="#">RSS 订阅</a><span class="sep">|</span>
+      <a href="#">网站地图</a><span class="sep">|</span>
+      <a href="#">返回顶部 ↑</a>
+    </div>
+    <div style="margin-top:6px;">
+      © 2003-2006 ❄冰蝴蝶❄ Personal Homepage. All Rights Reserved.
+      <span class="sep">|</span>
+      用 ❤ + FrontPage 2003 + Flash MX 制作
+    </div>
+    <div style="margin-top:4px;">
+      京ICP备 00000000 号-1
+      <span class="sep">|</span>
+      邮件联系：ice_butterfly@163.com
+      <span class="sep">|</span>
+      <a href="#">申请友情链接</a>
+    </div>
+    <div class="powered">
+      Powered by HomePage V3.2 · 页面生成耗时 0.028 秒 · 最佳分辨率 1024×768 · IE6.0+ / Netscape 7.0
+    </div>
+  </div>
+
+</div><!-- /page-shell -->
+
+<!-- 右下角浮动小广告（当年网络风格必备） -->
+<div class="floating-ad" id="floatAd">
+  <span class="ad-x" onclick="document.getElementById('floatAd').style.display='none'">×</span>
+  <div class="ad-title">🔥 限时特惠 🔥</div>
+  <div>🎁 MP3 铃声下载！</div>
+  <div>周杰伦最新单曲<br>
+    发送短信 <b style="color:#c00;">A8 七里香</b><br>
+    到 <b style="color:#00c;">8888</b> 即可拥有<br>
+    仅 2 元/条，不含通讯费
+  </div>
+  <div style="margin-top:4px;color:#999;font-size:10px;">← 点击关闭</div>
 </div>
-
-<div class="page">
-
-  <!-- HERO -->
-  <header class="hero pixel-border">
-    <h1 class="bling-title">★ Blingee Pixel World ★</h1>
-    <p class="bling-subtitle sparkle-inline">欢迎来到闪亮像素世界 ~ 闪闪发光 ヾ(≧▽≦*)o</p>
-    <div class="pixel-btn-group">
-      <button class="pixel-btn" onclick="launchConfetti()">✨ 点我闪耀</button>
-      <button class="pixel-btn cyan" onclick="playBling()">💎 钻石特效</button>
-      <button class="pixel-btn yellow" onclick="shuffleCards()">🎲 随机魔法</button>
-    </div>
-    <div class="badge-row">
-      <span class="pixel-badge" style="--r: -3deg;">★ CUTE ★</span>
-      <span class="pixel-badge" style="--r: 2deg;">✦ PIXEL ✦</span>
-      <span class="pixel-badge" style="--r: -1deg;">♥ SPARKLE ♥</span>
-      <span class="pixel-badge" style="--r: 3deg;">◆ BLING ◆</span>
-    </div>
-  </header>
-
-  <!-- ABOUT / INTRO -->
-  <section class="section pixel-border">
-    <h2 class="section-title">关于闪亮风格</h2>
-    <div class="glitter-box">
-      <p>
-        <span class="sparkle-inline">Blingee 风格</span> 源自 2000 年代的网络文化，
-        以<strong style="color:#ff006e;">闪亮装饰</strong>、
-        <strong style="color:#48dbfb;">彩虹渐变</strong>、
-        <strong style="color:#a55eea;">像素艺术</strong>和
-        <strong style="color:#feca57;">可爱元素</strong>为特色！
-        <br><br>
-        ♥‿♥ 在这里，每一个角落都闪闪发光，每一次点击都绽放火花 ✨✧･ﾟ: *✧
-      </p>
-    </div>
-  </section>
-
-  <!-- FEATURE CARDS -->
-  <section class="section pixel-border">
-    <h2 class="section-title">闪亮像素画廊</h2>
-    <div class="card-grid" id="cardGrid">
-      <article class="pixel-card">
-        <div class="pixel-img"><div class="emoji">🦄</div></div>
-        <h3 class="card-title">独角兽幻想</h3>
-        <p class="card-text">在彩虹云上奔跑的梦幻独角兽，留下一串闪亮的足迹 ✨🌈✨</p>
-      </article>
-      <article class="pixel-card">
-        <div class="pixel-img"><div class="emoji">💖</div></div>
-        <h3 class="card-title">甜蜜心动</h3>
-        <p class="card-text">粉色爱心满溢，每一次跳动都是小小的幸福爆炸 ♥‿♥</p>
-      </article>
-      <article class="pixel-card">
-        <div class="pixel-img"><div class="emoji">⭐</div></div>
-        <h3 class="card-title">星星派对</h3>
-        <p class="card-text">闪闪发光的像素星星，点亮整个夜空 (✧ω✧) ★☆★☆</p>
-      </article>
-      <article class="pixel-card">
-        <div class="pixel-img"><div class="emoji">💎</div></div>
-        <h3 class="card-title">钻石闪耀</h3>
-        <p class="card-text">像素折射的彩虹光芒，钻石永远是女孩最好的朋友 💍✧</p>
-      </article>
-      <article class="pixel-card">
-        <div class="pixel-img"><div class="emoji">🍭</div></div>
-        <h3 class="card-title">糖果乐园</h3>
-        <p class="card-text">甜甜的像素糖果世界，连空气都是草莓味的 🍓🍬</p>
-      </article>
-      <article class="pixel-card">
-        <div class="pixel-img"><div class="emoji">🌈</div></div>
-        <h3 class="card-title">彩虹之桥</h3>
-        <p class="card-text">七色光带连接梦想与现实，每一步都超级闪亮！ ～(^з^)-♡</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- GUESTBOOK -->
-  <section class="section pixel-border">
-    <h2 class="section-title">闪亮留言板</h2>
-    <form class="guestbook" onsubmit="submitGuestbook(event)">
-      <label for="gb-name">★ 你的昵称</label>
-      <input id="gb-name" type="text" placeholder="留下你的闪亮名字 ✨" maxlength="30" required>
-
-      <label for="gb-msg">♥ 想对我说的话</label>
-      <textarea id="gb-msg" placeholder="写下你的心意，让它闪闪发光 💖" maxlength="200" required></textarea>
-
-      <button class="pixel-btn purple" type="submit">✦ 发送闪耀 ✦</button>
-    </form>
-    <div id="gb-result" style="margin-top: 20px; text-align: center; font-size: 22px; color: #5f27cd; min-height: 30px;"></div>
-  </section>
-
-</div>
-
-<!-- Bottom marquee -->
-<div class="marquee" style="margin-bottom:0;">
-  <div class="marquee-inner" id="marqueeInner2"></div>
-</div>
-
-<!-- Footer -->
-<footer class="footer">
-  <div class="footer-hearts">💖 💜 💙 💚 💛 🧡 ❤️</div>
-  <div>© 2026 ✦ BLINGEE PIXEL WORLD ✦</div>
-  <div style="margin-top: 10px; opacity: 0.9;">Made with ♡ & lots of ✨ SPARKLES ✨</div>
-</footer>
 
 <script>
-  /* ===================== Falling Sparkles Background ===================== */
-  const sparkleBG = document.getElementById('sparkle-bg');
-  const sparkleEmojis = ['✨','⭐','💖','💎','🌟','✦','♡','🌸','🦄','🌈'];
-  for (let i = 0; i < 50; i++) {
-    const s = document.createElement('div');
-    s.className = 'bg-sparkle';
-    s.textContent = sparkleEmojis[Math.floor(Math.random() * sparkleEmojis.length)];
-    s.style.left = Math.random() * 100 + 'vw';
-    s.style.fontSize = (14 + Math.random() * 20) + 'px';
-    s.style.animationDuration = (8 + Math.random() * 10) + 's, ' + (1 + Math.random() * 1.5) + 's';
-    s.style.animationDelay = (Math.random() * -15) + 's, ' + (Math.random() * -2) + 's';
-    sparkleBG.appendChild(s);
-  }
+/* ==========================================================
+   🗄  免费数据库后端配置：Supabase（PostgreSQL 免费层）
+   ----------------------------------------------------------
+   1. 打开 https://supabase.com/dashboard 注册/登录
+   2. 点击"New Project"创建免费项目（区域选新加坡/东京比较快）
+   3. 进入项目 → 左侧 SQL Editor → 新建查询，执行本页底部注释里的建表 SQL
+   4. 进入 Project Settings → API，复制 Project URL 和 anon public key 填到下面 ↓
+   5. 保存、推送 GitHub → 搞定！
+   ---
+   留空 = 自动使用浏览器 localStorage（刷新依然存在，但只保存在本机）
+   ========================================================== */
+const SUPABASE_CONFIG = {
+  url: "",          // ← 例: "https://xxxxxxxx.supabase.co"
+  anonKey: ""       // ← 例: "eyJhbGciOiJI..."
+};
 
-  /* ===================== Mouse Trail Sparkles ===================== */
-  const trailEmojis = ['✨','⭐','💖','💎','🌟','✦'];
-  let lastTrail = 0;
-  document.addEventListener('mousemove', (e) => {
-    const now = Date.now();
-    if (now - lastTrail < 45) return;
-    lastTrail = now;
-    const t = document.createElement('div');
-    t.className = 'trail-sparkle';
-    t.textContent = trailEmojis[Math.floor(Math.random() * trailEmojis.length)];
-    t.style.left = e.clientX + 'px';
-    t.style.top  = e.clientY + 'px';
-    const size = 12 + Math.random() * 14;
-    t.style.fontSize = size + 'px';
-    document.body.appendChild(t);
-    setTimeout(() => t.remove(), 900);
-  });
+/* -------------------- 统一数据存储层（Supabase / localStorage 二选一） -------------------- */
+const STORE = (() => {
+  let supabase = null;
+  let mode = 'local'; // 'supabase' | 'local'
+  let initMsg = '';
 
-  /* ===================== Click Burst Effect ===================== */
-  document.addEventListener('click', (e) => {
-    for (let i = 0; i < 6; i++) {
-      setTimeout(() => {
-        const b = document.createElement('div');
-        b.className = 'click-burst';
-        b.style.left = e.clientX + (Math.random() - 0.5) * 40 + 'px';
-        b.style.top  = e.clientY + (Math.random() - 0.5) * 40 + 'px';
-        const colors = ['#ff6b9d','#feca57','#48dbfb','#a55eea','#06ffa5'];
-        b.style.background = colors[Math.floor(Math.random() * colors.length)];
-        document.body.appendChild(b);
-        setTimeout(() => b.remove(), 700);
-      }, i * 40);
-    }
-  });
+  // --- localStorage helpers ---
+  const LS_KEYS = {
+    counter:   'y2k_counter_v1',
+    poll:      'y2k_poll_v1',
+    guestbook: 'y2k_gb_v1',
+    voted:     'y2k_voted_v1'
+  };
+  const LS = {
+    get(k, dflt){ try{ return JSON.parse(localStorage.getItem(k)) ?? dflt; }catch(_){ return dflt; } },
+    set(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(_){} }
+  };
 
-  /* ===================== Marquee Content ===================== */
-  const marqueeItems = [
-    ['✨ 欢迎来到闪亮世界 ✨','m-pink'],
-    ['★ BLINGEE PIXEL ★','m-yellow'],
-    ['💖 像素即正义 💖','m-cyan'],
-    ['✧ SPARKLE FOREVER ✧','m-purple'],
-    ['🌈 彩虹永不褪色 🌈','m-pink'],
-    ['💎 DIAMOND GIRL 💎','m-yellow'],
-    ['🌸 Kawaii 4ever 🌸','m-cyan'],
-    ['✦ STARDUST ✦','m-purple'],
-  ];
-  function fillMarquee(el) {
-    let html = '';
-    for (let r = 0; r < 3; r++) {
-      marqueeItems.forEach(([text, cls]) => {
-        html += `<span class="${cls}">${text}</span>`;
-      });
-    }
-    el.innerHTML = html;
-  }
-  fillMarquee(document.getElementById('marqueeInner'));
-  fillMarquee(document.getElementById('marqueeInner2'));
-
-  /* ===================== Confetti Launch ===================== */
-  function launchConfetti() {
-    const confetti = ['✨','⭐','💖','💎','🌟','🎉','🌸','🌈','🦄','🍭','💫','✦','♡','◆'];
-    for (let i = 0; i < 80; i++) {
-      setTimeout(() => {
-        const c = document.createElement('div');
-        c.textContent = confetti[Math.floor(Math.random() * confetti.length)];
-        c.style.position = 'fixed';
-        c.style.left = (50 + (Math.random() - 0.5) * 40) + 'vw';
-        c.style.top = '50vh';
-        c.style.fontSize = (14 + Math.random() * 24) + 'px';
-        c.style.zIndex = 10000;
-        c.style.pointerEvents = 'none';
-        const angle = Math.random() * Math.PI * 2;
-        const speed = 4 + Math.random() * 8;
-        const vx = Math.cos(angle) * speed;
-        const vy = Math.sin(angle) * speed - 4;
-        let x = 0, y = 0, rot = 0;
-        document.body.appendChild(c);
-        const start = Date.now();
-        const tick = () => {
-          const t = (Date.now() - start) / 1000;
-          x += vx;
-          y += vy + t * t * 3;
-          rot += 8;
-          c.style.transform = `translate(${x}px, ${y}px) rotate(${rot}deg)`;
-          c.style.opacity = Math.max(0, 1 - t * 0.5);
-          if (t < 2.5) requestAnimationFrame(tick);
-          else c.remove();
-        };
-        tick();
-      }, i * 18);
-    }
-  }
-
-  /* ===================== Diamond Effect ===================== */
-  function playBling() {
-    for (let r = 0; r < 3; r++) {
-      setTimeout(() => {
-        document.querySelectorAll('.pixel-card, .bling-title, .section-title').forEach((el, i) => {
-          setTimeout(() => {
-            el.style.transition = 'filter 0.3s, transform 0.3s';
-            el.style.filter = 'brightness(1.8) drop-shadow(0 0 30px #fff) drop-shadow(0 0 60px #48dbfb)';
-            el.style.transform = 'scale(1.04)';
-            setTimeout(() => {
-              el.style.filter = '';
-              el.style.transform = '';
-            }, 350);
-          }, i * 60);
+  async function init(){
+    const SUPABASE_URL = SUPABASE_CONFIG.url.trim();
+    const SUPABASE_ANON = SUPABASE_CONFIG.anonKey.trim();
+    const hasCfg = !!(SUPABASE_URL && SUPABASE_ANON && window.supabase);
+    if (hasCfg) {
+      try {
+        supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, {
+          auth: { persistSession: false, autoRefreshToken: false }
         });
-      }, r * 500);
+        // 做一次简单查询验证连接
+        const { error } = await supabase.from('site_counter').select('counter_val').limit(1).maybeSingle();
+        if (error && error.code !== 'PGRST116') { // 表为空是 PGRST116，不是连接问题
+          throw new Error(error.message || String(error));
+        }
+        mode = 'supabase';
+        initMsg = '已连接 Supabase PostgreSQL（数据全网同步）';
+      } catch(e) {
+        mode = 'local';
+        initMsg = 'Supabase 连接失败，已降级到本地存储：' + (e.message||e);
+      }
+    } else {
+      mode = 'local';
+      initMsg = '未配置 Supabase，使用浏览器本地存储（刷新不丢，换电脑不同步）';
     }
+    // 确保本地存储有初始值
+    if (!LS.get(LS_KEYS.counter)) LS.set(LS_KEYS.counter, { counter_val: 52018, today_val: 128, today_date: todayKey(), online: 37 });
+    if (!LS.get(LS_KEYS.poll))    LS.set(LS_KEYS.poll, { votes: [380, 260, 180, 120, 60], total: 1000 });
+    if (!LS.get(LS_KEYS.guestbook)) LS.set(LS_KEYS.guestbook, seedGuestbook());
+    return { mode, initMsg };
   }
 
-  /* ===================== Shuffle Cards Magic ===================== */
-  function shuffleCards() {
-    const grid = document.getElementById('cardGrid');
-    const cards = Array.from(grid.children);
-    cards.sort(() => Math.random() - 0.5);
-    cards.forEach((card, i) => {
-      card.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
-      card.style.transform = 'rotateY(360deg) scale(0.8)';
-      card.style.opacity = '0.3';
-      setTimeout(() => {
-        grid.appendChild(card);
-        card.style.transform = 'rotateY(0) scale(1)';
-        card.style.opacity = '1';
-      }, 300 + i * 50);
-    });
+  function todayKey(){
+    const d = new Date();
+    return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
   }
 
-  /* ===================== Guestbook Submit ===================== */
-  function submitGuestbook(e) {
-    e.preventDefault();
-    const name = document.getElementById('gb-name').value.trim();
-    const msg  = document.getElementById('gb-msg').value.trim();
-    if (!name || !msg) return;
-    const result = document.getElementById('gb-result');
-    const replies = [
-      `✨ ${name}，你的留言已化作闪亮星星！✨`,
-      `💖 谢谢 ${name}！心意已收到，爱心发射 💖`,
-      `🌈 ${name}，彩虹见证了你的美好留言 🌈`,
-      `💎 ${name}，你就是钻石般闪耀的存在！💎`,
-      `🌟 ${name}，你的名字将永远闪耀在像素世界 🌟`,
+  function seedGuestbook(){
+    const now = Date.now();
+    return [
+      {
+        id: 1, username: '§紫风铃§', message: '哇~~新主页好漂亮哦！蝴蝶的设计越来越棒了！+U +U！<br>对了，你推荐的《隐形的翅膀》我已经开始学了~ ♪(´▽`)',
+        face: '🐱', ip: '123.45.67.89', created_at: now - 1000*60*60*18, floor: 1
+      },
+      {
+        id: 2, username: '月光剑客', message: '偶来踩踩~~~记得回访哦！我在百度空间也开新主页了~<br>周杰伦那首《七里香》真的百听不厌，握个爪！o(≧v≦)o',
+        face: '🌙', ip: '202.108.xx.xx', created_at: now - 1000*60*60*17, floor: 2
+      },
+      {
+        id: 3, username: '淘气小熊', message: '今天来的有点晚~ <span class="rainbow-text">不过留言还是要留的！</span><br>蝴蝶姐姐！！我也要学做 FrontPage 教程，下次开课叫我！(>ω<)',
+        face: '🐻', ip: '61.50.xx.xx', created_at: now - 1000*60*60*15, floor: 3
+      }
     ];
-    result.innerHTML = replies[Math.floor(Math.random() * replies.length)];
-    result.style.animation = 'none';
-    void result.offsetWidth;
-    result.style.animation = 'shimmer 0.8s ease-in-out 3';
-    launchConfetti();
-    document.getElementById('gb-name').value = '';
-    document.getElementById('gb-msg').value = '';
   }
 
-  /* ===================== Auto Shine on Cards (idle animation) ===================== */
-  setInterval(() => {
-    const cards = document.querySelectorAll('.pixel-card');
-    const randomCard = cards[Math.floor(Math.random() * cards.length)];
-    if (randomCard) {
-      randomCard.style.transition = 'filter 0.4s';
-      randomCard.style.filter = 'brightness(1.25) drop-shadow(0 0 20px #ff6b9d)';
-      setTimeout(() => { randomCard.style.filter = ''; }, 500);
+  /* -------- Counter -------- */
+  async function getCounter(){
+    if (mode === 'supabase') {
+      const { data, error } = await supabase.from('site_counter').select('*').eq('id',1).maybeSingle();
+      if (error || !data) {
+        // 尝试 upsert 初始化
+        const today = todayKey();
+        const { data: d2 } = await supabase.from('site_counter').upsert(
+          { id:1, counter_val:52018, today_val:1, today_date: today, online:37 },
+          { onConflict:'id' }
+        ).select().single();
+        return d2 || { counter_val:52018, today_val:1, today_date:today, online:37 };
+      }
+      // 跨日重置今日
+      if (data.today_date !== todayKey()) {
+        data.today_val = 0;
+        data.today_date = todayKey();
+        await supabase.from('site_counter').update({ today_val:0, today_date: todayKey() }).eq('id',1);
+      }
+      return data;
+    } else {
+      const c = LS.get(LS_KEYS.counter);
+      if (c.today_date !== todayKey()) { c.today_val = 0; c.today_date = todayKey(); LS.set(LS_KEYS.counter, c); }
+      return c;
     }
-  }, 2200);
+  }
+  async function incrementCounter(){
+    if (mode === 'supabase') {
+      const { data, error } = await supabase.rpc('increment_counter');
+      if (error || !data) {
+        // 没有 RPC 就退化 SQL UPDATE
+        const today = todayKey();
+        await supabase.from('site_counter').update({
+          counter_val: supabase.raw('counter_val + 1'),
+          today_val:   supabase.raw(`CASE WHEN today_date = '${today}' THEN today_val + 1 ELSE 1 END`),
+          today_date:  today
+        }).eq('id',1);
+        return (await getCounter());
+      }
+      return data;
+    } else {
+      const c = LS.get(LS_KEYS.counter);
+      c.counter_val += 1;
+      if (c.today_date !== todayKey()) { c.today_val = 1; c.today_date = todayKey(); } else { c.today_val += 1; }
+      c.online = clampOnline((c.online||37) + (Math.floor(Math.random()*5)-2));
+      LS.set(LS_KEYS.counter, c);
+      return c;
+    }
+  }
+  async function setOnlineDelta(delta){
+    if (mode === 'supabase') {
+      await supabase.from('site_counter').update({
+        online: supabase.raw('GREATEST(10, LEAST(60, online + ' + delta + '))')
+      }).eq('id',1);
+      return (await getCounter()).online;
+    } else {
+      const c = LS.get(LS_KEYS.counter);
+      c.online = clampOnline((c.online||37) + delta);
+      LS.set(LS_KEYS.counter, c);
+      return c.online;
+    }
+  }
+  function clampOnline(n){ return Math.max(10, Math.min(60, n)); }
+
+  /* -------- Poll -------- */
+  async function getPoll(){
+    if (mode === 'supabase') {
+      const { data, error } = await supabase.from('site_poll').select('*').eq('id',1).maybeSingle();
+      if (error || !data) {
+        const seed = { id:1, v0:380,v1:260,v2:180,v3:120,v4:60 };
+        await supabase.from('site_poll').upsert(seed, { onConflict:'id' });
+        return seed;
+      }
+      return data;
+    }
+    const p = LS.get(LS_KEYS.poll);
+    return { id:1, v0:p.votes[0], v1:p.votes[1], v2:p.votes[2], v3:p.votes[3], v4:p.votes[4] };
+  }
+  async function votePoll(choiceIdx){
+    const key = 'voted_'+todayKey();
+    if (mode === 'local' && LS.get(LS_KEYS.voted, {})[key]) return { ok:false, reason:'今天已投过票啦~明天再来吧 ♪' };
+    if (mode === 'supabase') {
+      // 用浏览器指纹/本地存储做简单去重（RLS也可以加ip去重，这里简单处理）
+      if (LS.get(LS_KEYS.voted, {})[key]) return { ok:false, reason:'今天已投过票啦~明天再来吧 ♪' };
+      const col = 'v'+choiceIdx;
+      const { data } = await supabase.from('site_poll').update({
+        [col]: supabase.raw(col+' + 1')
+      }).eq('id',1).select().single();
+      LS.set(LS_KEYS.voted, { ...LS.get(LS_KEYS.voted, {}), [key]: true });
+      return { ok:true, data };
+    } else {
+      const p = LS.get(LS_KEYS.poll);
+      p.votes[choiceIdx] = (p.votes[choiceIdx]||0) + 1;
+      p.total = (p.total||0) + 1;
+      LS.set(LS_KEYS.poll, p);
+      LS.set(LS_KEYS.voted, { ...LS.get(LS_KEYS.voted, {}), [key]: true });
+      return { ok:true, data:{ id:1, v0:p.votes[0],v1:p.votes[1],v2:p.votes[2],v3:p.votes[3],v4:p.votes[4] } };
+    }
+  }
+
+  /* -------- Guestbook -------- */
+  async function listGuestbook(limit=30){
+    if (mode === 'supabase') {
+      const { data, error } = await supabase.from('guestbook').select('*').order('floor',{ascending:true}).limit(limit);
+      if (error) return seedGuestbook();
+      if (!data || data.length === 0) {
+        // 写回种子三条
+        const seeds = seedGuestbook();
+        for (const s of seeds){
+          delete s.id;
+          await supabase.from('guestbook').insert(s);
+        }
+        return (await listGuestbook(limit));
+      }
+      return data;
+    }
+    const arr = LS.get(LS_KEYS.guestbook);
+    return arr.slice(0, limit);
+  }
+  async function addGuestbook({username, message, face}){
+    const now = Date.now();
+    const ip = await guessIP();
+    if (mode === 'supabase') {
+      // 先得到下一个 floor
+      const { data: maxRow } = await supabase.from('guestbook').select('floor').order('floor',{ascending:false}).limit(1).maybeSingle();
+      const nextFloor = (maxRow && maxRow.floor) ? maxRow.floor + 1 : 1;
+      const { data, error } = await supabase.from('guestbook').insert({
+        username, message, face, ip, floor: nextFloor, created_at: now
+      }).select().single();
+      if (error) throw new Error(error.message || '写入失败');
+      return data;
+    } else {
+      const arr = LS.get(LS_KEYS.guestbook);
+      const nextFloor = (arr[arr.length-1] && arr[arr.length-1].floor) + 1 || 1;
+      const row = { id: Date.now(), username, message, face, ip, floor: nextFloor, created_at: now };
+      arr.push(row);
+      LS.set(LS_KEYS.guestbook, arr);
+      return row;
+    }
+  }
+
+  /* 工具：伪 IP（千禧年风格展示用） */
+  async function guessIP(){
+    try {
+      // 有 Supabase 就走 edge 网络拿不到真实 IP（纯前端），用随机生成模拟展示
+    } catch(_){}
+    const a = Math.floor(Math.random()*223+1);
+    const b = Math.floor(Math.random()*256);
+    const c = Math.floor(Math.random()*256);
+    return `${a}.${b}.${c}.xx.xx`;
+  }
+
+  return { init, get mode(){ return mode; }, get initMsg(){ return initMsg; },
+           getCounter, incrementCounter, setOnlineDelta,
+           getPoll, votePoll, listGuestbook, addGuestbook };
+})();
+
+/* -------------------- UI 渲染辅助 -------------------- */
+function fmtDate(ts){
+  const d = typeof ts === 'string' ? new Date(ts) : new Date(ts);
+  const pad = n => String(n).padStart(2,'0');
+  // 按"千禧年 2006-xx-xx xx:xx"风格返回
+  const yr = d.getFullYear();
+  return `${yr}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
+function floorName(n){
+  if (n === 1) return '沙发 1F';
+  if (n === 2) return '板凳 2F';
+  if (n === 3) return '地板 3F';
+  return `${n}F`;
+}
+function floorColor(n){
+  if (n === 1) return '#c00';
+  if (n === 2) return '#060';
+  if (n === 3) return '#c60';
+  return '#333';
+}
+function avatarFor(emoji){
+  const list = ['🐱','🌙','🐻','🐶','🐼','🐰','🦊','🐨','🐸','🐵','🐷','🦄','🐞','🐳','🍭','🌸','⭐','🎀'];
+  return emoji || list[Math.floor(Math.random()*list.length)];
+}
+function avatarGradientFor(i){
+  const grads = [
+    'linear-gradient(135deg,#ffd1e0,#ff9ec2)',
+    'linear-gradient(135deg,#cceeff,#ccaaee)',
+    'linear-gradient(135deg,#fff2cc,#ffbb88)',
+    'linear-gradient(135deg,#e2ffd1,#a3e4a3)',
+    'linear-gradient(135deg,#ffe1ff,#d6a8ff)',
+  ];
+  return grads[i % grads.length];
+}
+
+/* -------------------- 具体业务逻辑 -------------------- */
+
+/* 跑马灯内容（保留原样） */
+const mrItems = [
+  ['🎉 欢迎来到冰蝴蝶的温馨小窝！感谢您的访问~','hl'],
+  ['📢 公告：本主页于今日完成 V3.2 升级，新增加密相册功能~',''],
+  ['🎵 背景音乐已换为《七里香》，希望您喜欢！（如无声音请检查 Windows Media Player）','gr'],
+  ['💝 本周之星：§紫风铃§ 留言突破 300 条！','hl'],
+  ['📧 想要和我交换友情链接？点击「给我写信」吧！','bl'],
+  ['🔥 Hot：周杰伦 2006 世界巡回演唱会门票预售中~','hl'],
+  ['📚 推荐文章：教你用 Photoshop 做闪字教程 +5 篇~','gr'],
+  ['🌸 祝大家每天都有好心情！蝴蝶爱你们~ 💖','hl'],
+];
+function buildMR() {
+  let html = '';
+  for (let r = 0; r < 2; r++) {
+    mrItems.forEach(([t,c]) => { html += `<span class="${c}">● ${t}</span>`; });
+  }
+  document.getElementById('mrInner').innerHTML = html;
+}
+buildMR();
+
+/* 日期：生日倒计时 + 今天日期（千禧年 2006-08-25 风格展示，不影响真实逻辑） */
+function initDates() {
+  const now = new Date(2006, 7, 25);
+  const bd  = new Date(2007, 5, 15);
+  const diff = Math.ceil((bd - now) / 86400000);
+  document.getElementById('daysToBD').textContent = diff;
+  const wd = ['日','一','二','三','四','五','六'][now.getDay()];
+  document.getElementById('todayStr').textContent = `2006年8月25日 星期${wd}`;
+}
+initDates();
+
+/* 打字效果（DOS/BBS 风） - 支持读取真实 counter */
+function startTyping(counterNum){
+  const real = counterNum != null ? counterNum : 52019;
+  const typingText = [
+    '正在连接 FTP 服务器... [成功]',
+    '加载个人主页配置... [成功]',
+    `读取访客计数器... [${real}]`,
+    '读取留言板... [DB 连接成功]',
+    '加载背景音乐《七里香》... [成功]',
+    '',
+    `> 欢迎你，第 ${real+1} 位访客！请随便看看~`,
+    '> 如果你喜欢这个主页，请在留言板留下足迹 ♡',
+  ];
+  const el = document.getElementById('typingLine');
+  let l = 0, c = 0, html = '';
+  const tick = () => {
+    if (l < typingText.length) {
+      const line = typingText[l];
+      if (c <= line.length) {
+        const cur = line.slice(0, c) + `<span class="cursor"> </span>`;
+        el.innerHTML = html + (l>0?'\n':'') + cur;
+        c++;
+        setTimeout(tick, 20 + Math.random()*50);
+      } else {
+        html += (l>0?'\n':'') + line;
+        l++; c = 0;
+        setTimeout(tick, 260);
+      }
+    } else {
+      el.innerHTML = html + '\n<span class="cursor"> </span>';
+    }
+  };
+  tick();
+}
+
+/* 计数器显示 */
+let _counterVal = 52018, _todayCount = 128;
+const digitEl = () => document.querySelectorAll('#counter .digit');
+function paintCounter(val, today){
+  _counterVal = val; _todayCount = today;
+  const str = String(val).padStart(7, '0');
+  digitEl().forEach((d, i) => {
+    if (d.textContent !== String(str[i])){
+      d.style.transform = 'scale(1.3)';
+      setTimeout(()=>{ d.style.transform = ''; }, 150);
+    }
+    d.textContent = str[i];
+  });
+  const tc = document.getElementById('todayCount');
+  if (tc) tc.textContent = today;
+}
+
+/* 在线人数显示 */
+function paintOnline(n){ document.getElementById('onlineNum').textContent = n; }
+
+/* 日历（2006年8月，原样保留） */
+function buildCalendar() {
+  const firstDay = 2, days = 31, today = 25;
+  let html = '<caption>2006 年 8 月</caption><thead><tr>'
+    +'<th class="sun">日</th><th>一</th><th>二</th><th>三</th>'
+    +'<th>四</th><th>五</th><th class="sat">六</th></tr></thead><tbody>';
+  let d = 1;
+  for (let w = 0; w < 6; w++) {
+    html += '<tr>';
+    for (let i = 0; i < 7; i++) {
+      if (w === 0 && i < firstDay) { html += '<td class="empty"></td>'; }
+      else if (d > days) { html += '<td class="empty"></td>'; }
+      else {
+        const cls = (d === today ? 'today ' : '') + (i === 0 ? 'sun ' : '') + (i === 6 ? 'sat ' : '');
+        html += `<td class="${cls}" title="2006-08-${d}">${d}</td>`;
+        d++;
+      }
+    }
+    html += '</tr>';
+    if (d > days) break;
+  }
+  html += '</tbody>';
+  document.getElementById('miniCal').innerHTML = html;
+}
+buildCalendar();
+
+/* 音乐播放器（模拟） - 原样保留 */
+let playing = true;
+let curSec = 83;
+const totalSec = 299;
+function fmtTime(s) {
+  const m = Math.floor(s/60), sec = s%60;
+  return String(m).padStart(2,'0')+':'+String(sec).padStart(2,'0');
+}
+function tickTime() {
+  if (playing) { curSec++; if (curSec > totalSec) curSec = 0; }
+  document.getElementById('plTime').textContent = fmtTime(curSec) + ' / ' + fmtTime(totalSec);
+}
+setInterval(tickTime, 1000);
+function togglePlay() {
+  playing = !playing;
+  const btn = document.getElementById('playBtn');
+  btn.textContent = playing ? '⏸' : '▶';
+  btn.classList.toggle('pl-play', !playing);
+  document.querySelectorAll('#plSpec .bar').forEach(b => {
+    b.style.animationPlayState = playing ? 'running' : 'paused';
+  });
+}
+function stopPlay() {
+  playing = false; curSec = 0;
+  document.getElementById('playBtn').textContent = '▶';
+  document.getElementById('playBtn').classList.add('pl-play');
+  document.querySelectorAll('#plSpec .bar').forEach(b => b.style.animationPlayState='paused');
+  tickTime();
+}
+
+/* 投票渲染 */
+const POLL_LABELS = ['七里香','青花瓷','双截棍','晴天','其他'];
+function paintPoll(row){
+  const vs = [row.v0||0, row.v1||0, row.v2||0, row.v3||0, row.v4||0];
+  const total = vs.reduce((a,b)=>a+b,0) || 1;
+  for (let i = 0; i < 5; i++){
+    const pct = Math.round(vs[i]*100/total);
+    document.getElementById('pollPct'+i).textContent = pct+'%';
+    document.getElementById('pollBar'+i).style.width = Math.max(2, pct*1.2) + 'px';
+  }
+  document.getElementById('pollTotal').textContent = total.toLocaleString();
+}
+async function votePollUI(){
+  const v = document.querySelector('input[name="poll"]:checked');
+  if (!v) { alert('请先选择一个选项~'); return; }
+  const res = await STORE.votePoll(parseInt(v.value,10));
+  if (!res.ok) { alert(res.reason || '投票失败'); return; }
+  paintPoll(res.data || (await STORE.getPoll()));
+  alert('✅ 投票成功！感谢您的参与 ♡');
+}
+function votePoll(){ votePollUI(); }
+
+/* 留言板渲染 */
+function paintGuestbook(list){
+  const wrap = document.getElementById('gbList');
+  if (!wrap) return;
+  wrap.innerHTML = list.map((post, idx) => {
+    const emoji = avatarFor(post.face);
+    const grad  = avatarGradientFor(idx);
+    const fc = floorColor(post.floor);
+    return `
+    <div class="gb-post">
+      <div class="gb-avatar" style="background:${grad};">${emoji}</div>
+      <div>
+        <div class="gb-head">
+          <span class="user">${escapeHtml(post.username)}</span> (${escapeHtml(post.ip||'x.x.x.x')})
+          <span class="gb-floor" style="background:${fc};">${floorName(post.floor)}</span>
+          <span style="float:right;">${fmtDate(post.created_at)}</span>
+        </div>
+        <div class="gb-body">${post.message}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+function escapeHtml(s){
+  return String(s||'').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+/* 提交留言 - 后端写入版本 */
+async function submitGB(){
+  const userEl = document.getElementById('gbUser');
+  const msgEl  = document.getElementById('gbMsg');
+  const faceEl = document.getElementById('gbFace');
+  const result = document.getElementById('gbResult');
+  const user = userEl.value.trim() || '匿名网友';
+  const msg  = msgEl.value.trim();
+  const face = (faceEl.value || '😊').split(' ')[0];
+  if (!msg) {
+    result.style.color = '#c00';
+    result.textContent = '❌ 请写点东西再提交呀~';
+    return;
+  }
+  result.style.color = '#006';
+  result.textContent = '⏳ 正在写入数据库，请稍候...';
+  try {
+    await STORE.addGuestbook({ username:user, message:escapeHtml(msg).replace(/\n/g,'<br>'), face });
+    const all = await STORE.listGuestbook(50);
+    paintGuestbook(all);
+    result.style.color = '#060';
+    result.textContent = '✅ 留言提交成功！已写入数据库 ♡ 刷新也不会丢啦~';
+    msgEl.value = '';
+  } catch(e) {
+    result.style.color = '#c00';
+    result.textContent = '❌ 提交失败：' + (e.message||e);
+  }
+  setTimeout(() => { result.textContent = ''; }, 6000);
+}
+
+/* Win98 窗口最小化按钮 */
+document.querySelectorAll('.win-title .wt-btn.x').forEach(btn => {
+  btn.addEventListener('click', function(e) {
+    const win = this.closest('.win98');
+    if (win) {
+      const note = document.createElement('div');
+      note.textContent = '📌 [窗口已最小化，点击此处恢复]';
+      note.style.cssText = 'font-size:12px;color:#006;background:#e6eefc;padding:4px 8px;margin-bottom:8px;cursor:pointer;border:1px dashed #6699cc;';
+      win.style.display = 'none';
+      win.parentNode.insertBefore(note, win);
+      note.addEventListener('click', () => { win.style.display = ''; note.remove(); });
+    }
+    e.stopPropagation();
+  });
+});
+
+/* 更新后端徽标 */
+function paintBackendBadge(mode, msg){
+  const badge = document.getElementById('backendBadge');
+  const hint  = document.getElementById('backendHint');
+  if (!badge) return;
+  if (mode === 'supabase'){
+    badge.className = 'backend-badge ok';
+    badge.textContent = '✅ 云端模式 Supabase (PostgreSQL)';
+  } else if (mode === 'local'){
+    badge.className = 'backend-badge local';
+    badge.textContent = '💾 本地模式 (localStorage)';
+  } else {
+    badge.className = 'backend-badge err';
+    badge.textContent = '❌ 异常';
+  }
+  if (hint) hint.textContent = msg || '';
+}
+
+/* ============ 启动：数据加载 + 定时器 ============ */
+(async function bootstrap(){
+  const { mode, initMsg } = await STORE.init();
+  paintBackendBadge(mode, initMsg);
+
+  // 1) 计数器
+  const c = await STORE.getCounter();
+  paintCounter(c.counter_val||0, c.today_val||0);
+  paintOnline(c.online||37);
+  // 打字效果用真实值
+  startTyping(c.counter_val||52018);
+
+  // 每 1.8s 涨一次（老站人气感），真实写入后端
+  setInterval(async () => {
+    try {
+      const nc = await STORE.incrementCounter();
+      paintCounter(nc.counter_val, nc.today_val);
+    } catch(_) {}
+  }, 1800);
+  // 在线人数每 3s 做一次小波动，写入
+  setInterval(async () => {
+    try {
+      const n = await STORE.setOnlineDelta( Math.floor(Math.random()*5) - 2 );
+      paintOnline(n);
+    } catch(_) {}
+  }, 3000);
+
+  // 2) 投票
+  try {
+    const p = await STORE.getPoll();
+    paintPoll(p);
+  } catch(_) {}
+
+  // 3) 留言板
+  try {
+    const gb = await STORE.listGuestbook(50);
+    paintGuestbook(gb);
+  } catch(_) {}
+})();
 </script>
 
+</script>
 </body>
 </html>
