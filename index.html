@@ -847,11 +847,16 @@ body.theme-qq {
   display: flex; flex-direction: column; gap: 8px; z-index: 99;
 }
 .fx-btn {
-  width: 40px; height: 40px; font-size: 18px;
+  width: 58px; height: 54px; font-size: 20px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px;
   border: 2px outset #f9f;
   background: linear-gradient(180deg,#ffd1ff,#ff99dd);
   cursor: pointer; box-shadow: 2px 2px 0 rgba(0,0,0,.35);
   animation: btn-pulse 2s ease-in-out infinite;
+}
+.fx-lbl {
+  font-size: 10px; line-height: 1; color: #8b0058; font-weight: bold;
+  letter-spacing: 1px; text-shadow: 0 1px 0 #fff;
 }
 .fx-btn:hover { transform: scale(1.08) rotate(-4deg); }
 .fx-btn:nth-child(2) { animation-delay: .6s; }
@@ -1023,8 +1028,8 @@ body.theme-qq {
 
 
 <div id="fxToolbar" title="点击切换皮肤 / 飘落特效">
-  <button class="fx-btn" onclick="cycleTheme()" title="换肤：冰蓝 / 薰衣草紫 / QQ橙">🎨</button>
-  <button class="fx-btn" onclick="cycleFx()"    title="飘落：关 / ❄️雪 / 🌸樱 / ⭐星 / 🦋蝶">✨</button>
+  <button class="fx-btn" onclick="cycleTheme()" title="换肤：冰蓝 / 薰衣草紫 / QQ橙"><span>🎨</span><span class="fx-lbl">换肤</span></button>
+  <button class="fx-btn" onclick="cycleFx()"    title="飘落：关 / ❄️雪 / 🌸樱 / ⭐星 / 🦋蝶"><span>✨</span><span class="fx-lbl">特效</span></button>
 </div>
 
 <div class="page-shell">
