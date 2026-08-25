@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="GB2312">
+<title>★冰蝴蝶的个人主页★ ~欢迎光临哦~</title>
+<style>
+/* ===== 千禧年中国互联网复古 Y2K-CN ===== */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "SimSun", "宋体", "NSimSun", serif;
+  font-size: 14px;
+  color: #000;
+  background: #0a246a;
+  /* 经典蓝色星空渐变 + 星星GIF风格点阵 */
+  background-image:
+    radial-gradient(circle at 15% 20%, #fff 1px, transparent 2px),
+    radial-gradient(circle at 35% 70%, #fff 1px, transparent 2px),
+    radial-gradient(circle at 65% 30%, #fff 1px, transparent 2px),
+    radial-gradient(circle at 85% 80%, #fff 1px, transparent 2px),
+    radial-gradient(circle at 50% 50%, #ffffff99 1px, transparent 2px),
+    linear-gradient(180deg, #000080 0%, #0044aa 30%, #0066cc 60%, #0044aa 100%);
+  background-size: 200px 200px, 220px 220px, 180px 180px, 260px 260px, 300px 300px, auto;
+  background-attachment: fixed;
+  min-height: 100vh;
+  cursor: default;
+}
+
+/* ===== 页面最外层：90s/00s 居中固定宽度表格布局 ===== */
+.page-shell {
+  width: 960px;
+  margin: 10px auto;
+  background: #ffffff;
+  border: 2px solid #000;
+  /* Win98 风格外边框 */
+  box-shadow:
+    inset 1px 1px 0 #fff, inset -1px -1px 0 #808080,
+    inset 2px 2px 0 #dfdfdf, inset -2px -2px 0 #404040,
+    3px 3px 0 rgba(0,0,0,0.4);
+}
+
+/* ===== 顶部 Banner 区（网易/搜狐/雅虎中国风格） ===== */
+.site-banner {
+  background: linear-gradient(180deg, #0055bb 0%, #003388 50%, #001155 100%);
+  color: #fff;
+  padding: 0;
+  border-bottom: 2px solid #000;
+  position: relative;
+  overflow: hidden;
+}
+.banner-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  position: relative;
+  z-index: 2;
+}
+.site-title {
+  font-family: "华文行楷", "KaiTi", "楷体", serif;
+  font-size: 34px;
+  color: #ffff66;
+  text-shadow: 2px 2px 0 #ff0066, -1px -1px 0 #fff;
+  letter-spacing: 4px;
+  animation: rainbowSlogan 5s linear infinite;
+}
+@keyframes rainbowSlogan {
+  0%,100% { color: #ffff66; text-shadow: 2px 2px 0 #ff0066, -1px -1px 0 #fff; }
+  25%     { color: #66ffff; text-shadow: 2px 2px 0 #ff00ff, -1px -1px 0 #fff; }
+  50%     { color: #ff66ff; text-shadow: 2px 2px 0 #0066ff, -1px -1px 0 #fff; }
+  75%     { color: #66ff66; text-shadow: 2px 2px 0 #ff6600, -1px -1px 0 #fff; }
+}
+.banner-tagline {
+  font-size: 12px;
+  color: #cceeff;
+  margin-top: 4px;
+}
+.banner-qq {
+  background: #fff;
+  color: #000;
+  padding: 6px 10px;
+  border: 2px solid #000;
+  font-size: 12px;
+  box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #808080;
+}
+.banner-qq b { color: #c00; font-size: 14px; }
+
+/* Banner 底部跑马灯（marquee 经典） */
+.marquee-ribbon {
+  background: #ffffcc;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  font-size: 12px;
+  color: #000080;
+  padding: 4px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.marquee-ribbon .mr-inner {
+  display: inline-block;
+  animation: mrScroll 22s linear infinite;
+}
+@keyframes mrScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-ribbon span { margin: 0 18px; }
+.marquee-ribbon .hl { color: #c00; font-weight: bold; }
+.marquee-ribbon .gr { color: #060; }
+.marquee-ribbon .bl { color: #00c; }
+
+/* ===== 主导航条 ===== */
+.site-nav {
+  background: #ece9d8; /* Win98 灰 */
+  border-bottom: 2px solid #000;
+  padding: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.site-nav a {
+  display: inline-block;
+  padding: 5px 12px;
+  background: linear-gradient(180deg, #fff 0%, #d4d0c8 100%);
+  border: 2px solid #000;
+  box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #808080;
+  color: #000;
+  text-decoration: none;
+  font-size: 13px;
+}
+.site-nav a:hover {
+  background: linear-gradient(180deg, #ffffcc 0%, #ffdd88 100%);
+  color: #c00;
+}
+.site-nav a:active {
+  box-shadow: inset 1px 1px 0 #808080, inset -1px -1px 0 #fff;
+  transform: translate(1px, 1px);
+}
+.site-nav a.cur { background: linear-gradient(180deg, #aaccff 0%, #5588ee 100%); color: #fff; }
+
+/* ===== 主布局：三栏（左导航+中间内容+右小工具） ===== */
+.main-grid {
+  display: grid;
+  grid-template-columns: 180px 1fr 200px;
+  gap: 8px;
+  padding: 8px;
+  background: #f8f8f0;
+}
+
+/* ===== Win98 风格窗口组件 ===== */
+.win98 {
+  background: #ece9d8;
+  border: 2px solid #000;
+  box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #808080,
+              inset 2px 2px 0 #dfdfdf, inset -2px -2px 0 #404040;
+  margin-bottom: 8px;
+}
+.win-title {
+  background: linear-gradient(180deg, #0055ee 0%, #3377ee 8%, #0033aa 90%, #002288 100%);
+  color: #fff;
+  padding: 3px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: bold;
+  border-bottom: 1px solid #000;
+}
+.win-title .wt-icon { margin-right: 6px; }
+.win-title .wt-btns { display: flex; gap: 3px; }
+.win-title .wt-btn {
+  width: 18px; height: 16px;
+  background: #ece9d8;
+  border: 1px solid #000;
+  box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #808080;
+  font-size: 10px; color: #000;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  line-height: 1;
+}
+.win-title .wt-btn.x { color: #c00; font-weight: bold; }
+.win-body {
+  padding: 8px;
+  font-size: 13px;
+  line-height: 1.7;
+  background: #fff;
+  margin: 4px;
+  border: 2px solid #808080;
+  box-shadow: inset 1px 1px 0 #404040, inset -1px -1px 0 #fff;
+}
+
+/* ===== 左侧：个人信息 ===== */
+.avatar-box {
+  text-align: center;
+  padding: 6px;
+  background: linear-gradient(180deg, #ffe4f0 0%, #ffccdd 100%);
+  border: 2px solid #ff6699;
+  margin-bottom: 8px;
+}
+.avatar-pixel {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 6px;
+  background:
+    linear-gradient(45deg, #ffd700 25%, transparent 25%) 0 0/20px 20px,
+    linear-gradient(-45deg, #ff66aa 25%, transparent 25%) 0 0/20px 20px,
+    linear-gradient(45deg, transparent 75%, #88aaff 75%) 0 0/20px 20px,
+    linear-gradient(-45deg, transparent 75%, #aaffaa 75%) 0 0/20px 20px,
+    #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 56px;
+  border: 2px solid #c00;
+  animation: blinkGlow 1.8s ease-in-out infinite;
+}
+@keyframes blinkGlow {
+  0%,100% { box-shadow: 0 0 0 #ff0066; }
+  50%     { box-shadow: 0 0 12px #ff0066, 0 0 24px #ff0066; }
+}
+.nickname {
+  color: #c00;
+  font-size: 15px;
+  font-weight: bold;
+  font-family: "KaiTi", "楷体", serif;
+  text-decoration: underline dotted #f69;
+}
+.huoxingwen {
+  font-family: "SimSun", serif;
+  color: #660099;
+  font-size: 12px;
+  background: #fff0ff;
+  padding: 4px;
+  border: 1px dashed #c0c;
+  margin: 6px 0;
+  text-align: center;
+  line-height: 1.8;
+}
+
+/* 信息小表 */
+.info-tbl { width: 100%; font-size: 12px; border-collapse: collapse; }
+.info-tbl td {
+  padding: 3px 4px;
+  border-bottom: 1px dotted #ccc;
+  vertical-align: top;
+}
+.info-tbl td:first-child {
+  width: 60px;
+  color: #000080;
+  font-weight: bold;
+  background: #f0f0ff;
+}
+.info-tbl td:last-child { color: #333; }
+
+/* ===== 访客计数器（经典5位或7位LED样式） ===== */
+.counter-wrap {
+  text-align: center;
+  padding: 8px;
+  background: #000;
+  border: 2px inset #888;
+  margin: 6px 0;
+}
+.counter-label {
+  color: #0f0;
+  font-size: 11px;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+.counter-digits {
+  display: inline-flex;
+  gap: 2px;
+  justify-content: center;
+}
+.digit {
+  width: 20px;
+  height: 30px;
+  background: #111;
+  color: #ff0000;
+  border: 1px solid #444;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 30px;
+  text-align: center;
+  text-shadow: 0 0 4px #ff0000, 0 0 8px #ff0000;
+}
+.counter-today {
+  color: #0ff;
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+/* 在线人数 */
+.online {
+  text-align: center;
+  font-size: 12px;
+  padding: 4px;
+  background: #e0ffe0;
+  border: 1px solid #090;
+  color: #060;
+  margin: 4px 0;
+}
+.online .num { color: #c00; font-weight: bold; font-size: 14px; }
+
+/* ===== 友情链接（经典列表） ===== */
+.links-list { list-style: none; padding: 0; margin: 0; font-size: 12px; }
+.links-list li {
+  padding: 4px 6px;
+  border-bottom: 1px dashed #aac;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><polygon points='2,2 10,6 2,10' fill='%2300c'/></svg>") no-repeat left 8px center;
+  padding-left: 22px;
+}
+.links-list a { color: #00c; text-decoration: underline; }
+.links-list a:visited { color: #800080; }
+.links-list a:hover { color: #c00; background: #ffffcc; }
+.links-list .new::after {
+  content: "NEW!";
+  color: #fff;
+  background: #f00;
+  font-size: 9px;
+  padding: 0 3px;
+  margin-left: 3px;
+  vertical-align: super;
+  animation: blink 1s steps(2) infinite;
+}
+@keyframes blink { 50% { opacity: 0.2; } }
+
+/* ===== 中间主内容 ===== */
+.hero-postcard {
+  background: linear-gradient(180deg, #fff6ff 0%, #ffecf6 50%, #e6f0ff 100%);
+  border: 2px dashed #ff99cc;
+  padding: 12px;
+  margin-bottom: 10px;
+  text-align: center;
+  position: relative;
+}
+.hero-postcard::before, .hero-postcard::after {
+  content: "🌹";
+  position: absolute;
+  font-size: 28px;
+  animation: sway 2.5s ease-in-out infinite;
+}
+.hero-postcard::before { top: 6px; left: 10px; }
+.hero-postcard::after  { bottom: 6px; right: 10px; animation-delay: 1.2s; }
+@keyframes sway {
+  0%,100% { transform: rotate(-10deg); }
+  50%     { transform: rotate(10deg); }
+}
+.hero-title {
+  font-family: "华文彩云", "STCaiyun", "KaiTi", serif;
+  font-size: 26px;
+  color: #cc0066;
+  text-shadow: 1px 1px 0 #fff, 2px 2px 0 #ffcccc;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+.hero-sub {
+  font-size: 14px;
+  color: #336699;
+}
+
+/* 最新日记 表格样式（论坛风） */
+.forum-tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin: 6px 0;
+  background: #fff;
+}
+.forum-tbl th {
+  background: linear-gradient(180deg, #66aaff 0%, #3366cc 100%);
+  color: #fff;
+  padding: 5px 8px;
+  border: 1px solid #003377;
+  text-align: left;
+  font-weight: bold;
+}
+.forum-tbl td {
+  padding: 5px 8px;
+  border: 1px solid #8098c0;
+  color: #000;
+}
+.forum-tbl tr:nth-child(even) td { background: #f0f4fa; }
+.forum-tbl tr:hover td { background: #ffffdd; }
+.forum-tbl .title-cell a { color: #0000c0; text-decoration: underline; }
+.forum-tbl .title-cell a:visited { color: #666; }
+.forum-tbl .hot { color: #c00; font-weight: bold; }
+.forum-tbl .hot::before { content: "🔥"; margin-right: 2px; }
+
+/* 七彩渐变文字（QQ签名风） */
+.rainbow-text {
+  display: inline-block;
+  font-weight: bold;
+  background: linear-gradient(90deg, #c00, #f80, #ed0, #0a0, #08f, #60c, #c00);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbowMove 4s linear infinite;
+}
+@keyframes rainbowMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* 日记内容卡 */
+.diary-entry {
+  padding: 8px 10px;
+  border-left: 4px solid #ff6699;
+  background: #fffafc;
+  margin: 6px 0;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.diary-entry .d-title {
+  color: #000080;
+  font-weight: bold;
+  font-size: 14px;
+  border-bottom: 1px dotted #999;
+  padding-bottom: 2px;
+  margin-bottom: 4px;
+}
+.diary-entry .d-meta {
+  font-size: 11px;
+  color: #888;
+  margin-bottom: 4px;
+}
+.diary-entry .d-meta .sep { margin: 0 6px; color: #ccc; }
+
+/* ===== 右侧：音乐播放器 + 日历 + 天气 ===== */
+/* Winamp/千千静听风格播放器 */
+.player {
+  background: #2a2a3a;
+  color: #0f0;
+  padding: 8px;
+  font-family: "Courier New", monospace;
+  border: 2px solid #000;
+  box-shadow: inset 2px 2px 0 #555, inset -2px -2px 0 #111;
+}
+.pl-title {
+  font-size: 11px;
+  color: #0ff;
+  margin-bottom: 4px;
+  letter-spacing: 1px;
+}
+.pl-songname {
+  background: #000;
+  color: #0f0;
+  padding: 4px 6px;
+  border: 1px inset #0a0;
+  font-size: 12px;
+  margin-bottom: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.pl-songname .s-text {
+  display: inline-block;
+  animation: songScroll 12s linear infinite;
+  padding-left: 100%;
+}
+@keyframes songScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+.pl-spectrum {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 24px;
+  background: #000;
+  padding: 3px;
+  margin-bottom: 6px;
+  border: 1px inset #0a0;
+}
+.pl-spectrum .bar {
+  flex: 1;
+  background: linear-gradient(180deg, #0f0 0%, #0f0 60%, #ff0 80%, #f00 100%);
+  animation: spectrum 0.6s ease-in-out infinite alternate;
+}
+.pl-spectrum .bar:nth-child(1) { height: 60%; animation-delay: -0.1s; }
+.pl-spectrum .bar:nth-child(2) { height: 90%; animation-delay: -0.3s; }
+.pl-spectrum .bar:nth-child(3) { height: 45%; animation-delay: -0.5s; }
+.pl-spectrum .bar:nth-child(4) { height: 75%; animation-delay: -0.2s; }
+.pl-spectrum .bar:nth-child(5) { height: 100%; animation-delay: -0.4s; }
+.pl-spectrum .bar:nth-child(6) { height: 55%; animation-delay: -0.05s; }
+.pl-spectrum .bar:nth-child(7) { height: 85%; animation-delay: -0.35s; }
+.pl-spectrum .bar:nth-child(8) { height: 35%; animation-delay: -0.25s; }
+.pl-spectrum .bar:nth-child(9) { height: 70%; animation-delay: -0.45s; }
+.pl-spectrum .bar:nth-child(10) { height: 50%; animation-delay: -0.15s; }
+@keyframes spectrum {
+  0%   { transform: scaleY(0.2); }
+  100% { transform: scaleY(1); }
+}
+.pl-controls {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+.pl-btn {
+  background: linear-gradient(180deg, #ddd 0%, #888 100%);
+  border: 1px solid #000;
+  box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #555;
+  padding: 3px 8px;
+  font-size: 11px;
+  color: #000;
+  cursor: pointer;
+}
+.pl-btn:active {
+  box-shadow: inset 1px 1px 0 #555, inset -1px -1px 0 #fff;
+  transform: translate(1px,1px);
+}
+.pl-btn.pl-play { color: #060; font-weight: bold; }
+.pl-btn.pl-stop { color: #a00; font-weight: bold; }
+.pl-time {
+  font-size: 11px;
+  text-align: center;
+  color: #ff0;
+  margin-top: 4px;
+}
+
+/* 迷你日历 */
+.mini-cal {
+  font-size: 11px;
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+}
+.mini-cal caption {
+  background: #0066cc;
+  color: #fff;
+  font-weight: bold;
+  padding: 3px;
+  border: 1px solid #000;
+}
+.mini-cal th {
+  background: #eee;
+  color: #333;
+  padding: 2px;
+  border: 1px solid #aaa;
+}
+.mini-cal th.sun { color: #c00; }
+.mini-cal th.sat { color: #00c; }
+.mini-cal td {
+  padding: 2px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+}
+.mini-cal td.empty { background: #f5f5f5; }
+.mini-cal td.today {
+  background: #c00;
+  color: #fff;
+  font-weight: bold;
+  animation: todayBlink 1s steps(2) infinite;
+}
+@keyframes todayBlink { 50% { background: #ff6600; } }
+.mini-cal td.sun { color: #c00; }
+.mini-cal td.sat { color: #00c; }
+.mini-cal td:hover { background: #ffc; }
+
+/* 天气 */
+.weather-box {
+  background: linear-gradient(180deg, #ccffff 0%, #99ccff 100%);
+  border: 1px solid #6699cc;
+  padding: 6px;
+  text-align: center;
+  font-size: 12px;
+}
+.weather-box .big-icon { font-size: 40px; line-height: 1; }
+.weather-box .t { font-size: 22px; font-weight: bold; color: #0066cc; }
+.weather-box .desc { color: #003366; }
+
+/* 投票 / 问卷调查 */
+.poll-title { font-weight: bold; color: #000080; margin-bottom: 4px; font-size: 13px; }
+.poll-opt { display: block; font-size: 12px; padding: 2px 0; }
+.poll-opt input { margin-right: 5px; }
+.poll-btn-wrap { margin-top: 6px; }
+.old-btn {
+  background: linear-gradient(180deg, #fff 0%, #ccc 100%);
+  border: 2px solid #000;
+  box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #808080;
+  padding: 3px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  font-family: "SimSun", serif;
+}
+.old-btn:active {
+  box-shadow: inset 1px 1px 0 #808080, inset -1px -1px 0 #fff;
+  transform: translate(1px,1px);
+}
+.old-btn.primary { background: linear-gradient(180deg, #ffdd88 0%, #ff9933 100%); }
+
+/* ===== 留言板（Q-Zone 风） ===== */
+.guestbook-area {
+  padding: 8px;
+}
+.gb-post {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 8px;
+  padding: 8px;
+  border: 1px solid #6699cc;
+  background: #f0f6ff;
+  margin-bottom: 8px;
+  align-items: start;
+}
+.gb-post .gb-avatar {
+  background: #fff;
+  border: 1px solid #333;
+  width: 76px;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  background: linear-gradient(135deg, #ffffcc, #ffccff);
+}
+.gb-post .gb-head { font-size: 12px; color: #666; border-bottom: 1px dotted #99c; padding-bottom: 2px; margin-bottom: 4px; }
+.gb-post .gb-head .user { color: #00c; font-weight: bold; text-decoration: underline; }
+.gb-post .gb-body { font-size: 13px; line-height: 1.6; color: #000; }
+.gb-floor {
+  display: inline-block;
+  background: #ff6600;
+  color: #fff;
+  font-size: 10px;
+  padding: 1px 5px;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+/* ===== 页脚 ===== */
+.site-footer {
+  background: #000080;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  font-size: 12px;
+  border-top: 2px solid #000;
+  line-height: 1.9;
+}
+.site-footer .sep { color: #6699cc; margin: 0 6px; }
+.site-footer a { color: #99ccff; text-decoration: underline; }
+.site-footer .powered { color: #999; font-size: 11px; margin-top: 6px; }
+
+/* ===== 打字效果（页面欢迎语） ===== */
+.typing-line {
+  background: #000;
+  color: #0f0;
+  font-family: "Courier New", monospace;
+  font-size: 13px;
+  padding: 8px 10px;
+  border: 2px solid #0a0;
+  margin: 6px 0;
+  min-height: 34px;
+  white-space: pre-wrap;
+  line-height: 1.5;
+}
+.typing-line .cursor {
+  display: inline-block;
+  width: 8px;
+  background: #0f0;
+  color: #000;
+  animation: cursorBlink 0.8s steps(2) infinite;
+  margin-left: 2px;
+}
+@keyframes cursorBlink { 50% { opacity: 0; } }
+
+/* ===== 网络蚂蚁/FlashGet 风格浮动下载广告（小） ===== */
+.floating-ad {
+  position: fixed;
+  right: 8px;
+  bottom: 8px;
+  width: 150px;
+  background: #ffffcc;
+  border: 2px solid #c00;
+  padding: 6px;
+  font-size: 11px;
+  z-index: 999;
+  box-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+}
+.floating-ad .ad-x {
+  float: right;
+  background: #c00;
+  color: #fff;
+  width: 16px; height: 16px;
+  line-height: 14px;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 12px;
+  border: 1px solid #000;
+}
+.floating-ad .ad-title {
+  font-weight: bold;
+  color: #c00;
+  margin-bottom: 4px;
+  font-size: 12px;
+  animation: blink 1s steps(2) infinite;
+}
+
+/* ===== 响应式（窄屏变两栏/单栏） ===== */
+@media (max-width: 980px) {
+  .page-shell { width: auto; margin: 0; }
+  .main-grid { grid-template-columns: 160px 1fr; }
+  .right-col { display: none; }
+}
+@media (max-width: 640px) {
+  .main-grid { grid-template-columns: 1fr; }
+  .left-col { order: 2; }
+  .center-col { order: 1; }
+}
+</style>
+</head>
+<body>
+
+<!-- 页面外壳 -->
+<div class="page-shell">
+
+  <!-- 顶部 Banner -->
+  <div class="site-banner">
+    <div class="banner-inner">
+      <div>
+        <div class="site-title">❄冰蝴蝶的温馨小窝❄</div>
+        <div class="banner-tagline">~ 个人主页 HomePage since 2003 · 用 FrontPage 精心制作 ~</div>
+      </div>
+      <div class="banner-qq">
+        📧 联系我 <b>QQ: 123456789</b><br>
+        ♪ 加我时请注明：来自个人主页
+      </div>
+    </div>
+
+    <!-- 跑马灯 -->
+    <div class="marquee-ribbon">
+      <div class="mr-inner" id="mrInner"></div>
+    </div>
+  </div>
+
+  <!-- 主导航条 -->
+  <div class="site-nav">
+    <a href="#" class="cur">🏠 首页</a>
+    <a href="#">📔 我的日记</a>
+    <a href="#">📷 我的相册</a>
+    <a href="#">🎵 音乐盒</a>
+    <a href="#">✍ 留言板</a>
+    <a href="#">🔗 友情链接</a>
+    <a href="#">📊 访客统计</a>
+    <a href="#">📧 给我写信</a>
+  </div>
+
+  <!-- 主体三栏 -->
+  <div class="main-grid">
+
+    <!-- 左侧栏 -->
+    <div class="left-col">
+
+      <!-- 个人资料窗口 -->
+      <div class="win98">
+        <div class="win-title">
+          <span><span class="wt-icon">👤</span>个人资料</span>
+          <span class="wt-btns">
+            <span class="wt-btn">_</span><span class="wt-btn">▢</span><span class="wt-btn x">×</span>
+          </span>
+        </div>
+        <div class="win-body" style="padding:6px;">
+          <div class="avatar-box">
+            <div class="avatar-pixel">🦋</div>
+            <div class="nickname">→冰雪儿←</div>
+            <div style="font-size:11px;color:#666;margin-top:2px;">♀ 女生 · 北京市</div>
+          </div>
+          <div class="huoxingwen">
+            ≧﹏≦ 偶dě伈情恏恏哦~~<br>
+            願兲使dē翅膀<br>
+            詠遠垨護著伱 ♡
+          </div>
+          <table class="info-tbl">
+            <tr><td>昵称</td><td>冰蝴蝶 ★雪儿★</td></tr>
+            <tr><td>性别</td><td>♀ 美少女</td></tr>
+            <tr><td>生日</td><td>1988-06-15 双子座</td></tr>
+            <tr><td>血型</td><td>O型 (╯3╰)</td></tr>
+            <tr><td>星座</td><td>♊ 雙子座</td></tr>
+            <tr><td>职业</td><td>大学生 / 平面模特</td></tr>
+            <tr><td>偶像</td><td>周杰伦, S.H.E, 蔡依林</td></tr>
+            <tr><td>爱好</td><td>上网、听歌、逛街、吃零食</td></tr>
+            <tr><td>格言</td><td class="rainbow-text">走自己的路，让别人说去吧！</td></tr>
+          </table>
+
+          <!-- 访客计数器 -->
+          <div class="counter-wrap">
+            <div class="counter-label">★ 您是第 ★</div>
+            <div class="counter-digits" id="counter">
+              <span class="digit">0</span><span class="digit">0</span>
+              <span class="digit">5</span><span class="digit">2</span>
+              <span class="digit">0</span><span class="digit">1</span>
+              <span class="digit">8</span>
+            </div>
+            <div class="counter-label" style="margin-top:4px;">★ 位访客 ★</div>
+            <div class="counter-today">今日访问：<span id="todayCount">128</span> 人</div>
+          </div>
+
+          <!-- 在线人数 -->
+          <div class="online">
+            🟢 当前在线：<span class="num" id="onlineNum">37</span> 人
+          </div>
+        </div>
+      </div>
+
+      <!-- 友情链接 -->
+      <div class="win98">
+        <div class="win-title">
+          <span><span class="wt-icon">🔗</span>友情链接</span>
+          <span class="wt-btns">
+            <span class="wt-btn">_</span><span class="wt-btn">▢</span><span class="wt-btn x">×</span>
+          </span>
+        </div>
+        <div class="win-body" style="padding:0;">
+          <ul class="links-list">
+            <li><a href="#" class="new">新浪爱问 iask.com</a></li>
+            <li><a href="#">网易 163.com</a></li>
+            <li><a href="#" class="new">搜狐 ChinaRen</a></li>
+            <li><a href="#">腾讯 QQ.com</a></li>
+            <li><a href="#">百度一下 Baidu</a></li>
+            <li><a href="#" class="new">淘宝网 Taobao</a></li>
+            <li><a href="#">天涯社区</a></li>
+            <li><a href="#">猫扑大杂烩</a></li>
+            <li><a href="#">西祠胡同</a></li>
+            <li><a href="#" class="new">博客大巴 BlogBus</a></li>
+            <li><a href="#">榕树下 文学</a></li>
+            <li><a href="#"> chinaren 校友录</a></li>
+            <li><a href="#" class="new">【好友】紫色风铃</a></li>
+            <li><a href="#">【好友】月光宝盒</a></li>
+            <li><a href="#">【好友】星晴小筑</a></li>
+          </ul>
+        </div>
+      </div>
+
+    </div><!-- /左栏 -->
+
+    <!-- 中间主内容 -->
+    <div class="center-col">
+
+      <!-- 欢迎卡片 -->
+      <div class="win98">
+        <div class="win-title">
+          <span><span class="wt-icon">🏡</span>首页 · 欢迎光临寒舍</span>
+          <span class="wt-btns">
+            <span class="wt-btn">_</span><span class="wt-btn">▢</span><span class="wt-btn x">×</span>
+          </span>
+        </div>
+        <div class="win-body" style="padding:6px;">
+          <div class="hero-postcard">
+            <div class="hero-title">❀ 歡迎光臨我的個人主頁 ❀</div>
+            <div class="hero-sub">
+              📅 今天是 <b id="todayStr"></b>　🌤️ 离我生日还有 <b id="daysToBD">294</b> 天
+            </div>
+          </div>
+
+          <!-- 打字效果 -->
+          <div class="typing-line" id="typingLine"></div>
+
+          <!-- 最新日志列表 -->
+          <table class="forum-tbl" style="margin-top:8px;">
+            <tr>
+              <th style="width:50px;">编号</th>
+              <th>日志标题</th>
+              <th style="width:70px;">分类</th>
+              <th style="width:110px;">日期</th>
+              <th style="width:50px;">点击</th>
+            </tr>
+            <tr>
+              <td>058</td>
+              <td class="title-cell"><a href="#" class="hot">【情感】如果微笑是一種武器，我願意為你投降 ♡</a></td>
+              <td>心情日记</td>
+              <td>2006-08-24</td>
+              <td>238</td>
+            </tr>
+            <tr>
+              <td>057</td>
+              <td class="title-cell"><a href="#">【生活】今天去香山看红叶啦！（附照片12张）</a></td>
+              <td>流水帐</td>
+              <td>2006-08-21</td>
+              <td>412</td>
+            </tr>
+            <tr>
+              <td>056</td>
+              <td class="title-cell"><a href="#">【音乐】推荐本周单曲循环 TOP 10</a></td>
+              <td>音乐分享</td>
+              <td>2006-08-18</td>
+              <td>891</td>
+            </tr>
+            <tr>
+              <td>055</td>
+              <td class="title-cell"><a href="#" class="hot">【吐槽】期末考试好难啊 T_T 求安慰</a></td>
+              <td>校园生活</td>
+              <td>2006-08-15</td>
+              <td>1,204</td>
+            </tr>
+            <tr>
+              <td>054</td>
+              <td class="title-cell"><a href="#">【教程】教你用 FrontPage 做漂亮的个人主页~</a></td>
+              <td>网络技术</td>
+              <td>2006-08-10</td>
+              <td>3,567</td>
+            </tr>
+          </table>
+
+          <!-- 两篇精选日记 -->
+          <div class="diary-entry">
+            <div class="d-title">🎀 8月24日 星期四 晴转多云 ☀→⛅</div>
+            <div class="d-meta">
+              作者：冰蝴蝶 <span class="sep">|</span>
+              分类：<span style="color:#060;">心情日记</span> <span class="sep">|</span>
+              阅读(238) <span class="sep">|</span>
+              <span style="color:#c00;">评论(56)</span>
+            </div>
+            <div class="d-body">
+              　　今天的天空很藍，就像剛洗過一樣。我坐在學校操場的台階上，耳機裏循環播放著周杰倫的《七里香》，那一刻，仿佛整個世界都安靜了下來…
+              <br><br>
+              　　下午收到了他寄來的信，普通的白色信封，字跡卻異常工整。心跳加速的那一刻，我終於明白，原來暗戀一個人，就像喝了一杯冰冰的檸檬茶，酸澀中透著甜甜的味道。
+              <span class="rainbow-text">♡ 希望明天的我，可以更勇敢一點 ♡</span>
+              <br><br>
+              　　對了，今天食堂的紅燒肉超級好吃！！！推薦指數：⭐⭐⭐⭐⭐
+            </div>
+          </div>
+
+          <div class="diary-entry" style="border-left-color:#66aaff; background:#f6faff;">
+            <div class="d-title">🎧 本周单曲循环 · TOP 10 推荐</div>
+            <div class="d-meta">
+              作者：冰蝴蝶 <span class="sep">|</span>
+              分类：<span style="color:#a60;">音乐分享</span> <span class="sep">|</span>
+              阅读(891) <span class="sep">|</span>
+              <span style="color:#c00;">评论(142)</span>
+            </div>
+            <div class="d-body">
+              1. 周杰伦 - 七里香 ♪♪♪<br>
+              2. S.H.E - 不想长大<br>
+              3. 蔡依林 - 舞娘 💃<br>
+              4. 五月天 - 倔强<br>
+              5. 孙燕姿 - 遇见 ✨<br>
+              6. 林俊杰 - 江南<br>
+              7. 张韶涵 - 隐形的翅膀 👼<br>
+              8. 潘玮柏 - 反转地球<br>
+              9. 飞儿乐团 - Lydia<br>
+              10. 光良 - 童话 <span style="color:#c00;">♡ 超感动！♡</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 留言板 -->
+      <div class="win98">
+        <div class="win-title">
+          <span><span class="wt-icon">✍</span>留言板 · 大家都在说什么？</span>
+          <span class="wt-btns">
+            <span class="wt-btn">_</span><span class="wt-btn">▢</span><span class="wt-btn x">×</span>
+          </span>
+        </div>
+        <div class="win-body guestbook-area">
+          <div class="gb-post">
+            <div class="gb-avatar">🐱</div>
+            <div>
+              <div class="gb-head">
+                <span class="user">§紫风铃§</span> (123.45.67.89)
+                <span class="gb-floor">沙发 1F</span>
+                <span style="float:right;">2006-08-24 14:22</span>
+              </div>
+              <div class="gb-body">
+                哇~~新主页好漂亮哦！蝴蝶的设计越来越棒了！+U +U！<br>
+                对了，你推荐的《隐形的翅膀》我已经开始学了~ ♪(´▽`)
+              </div>
+            </div>
+          </div>
+
+          <div class="gb-post">
+            <div class="gb-avatar" style="background:linear-gradient(135deg,#cceeff,#cce);">🌙</div>
+            <div>
+              <div class="gb-head">
+                <span class="user">月光剑客</span> (202.108.xx.xx)
+                <span class="gb-floor" style="background:#060;">板凳 2F</span>
+                <span style="float:right;">2006-08-24 15:05</span>
+              </div>
+              <div class="gb-body">
+                偶来踩踩~~~记得回访哦！我在百度空间也开新主页了~<br>
+                周杰伦那首《七里香》真的百听不厌，握个爪！o(≧v≦)o
+              </div>
+            </div>
+          </div>
+
+          <div class="gb-post">
+            <div class="gb-avatar" style="background:linear-gradient(135deg,#ffe,#ffb);">🐻</div>
+            <div>
+              <div class="gb-head">
+                <span class="user">淘气小熊</span> (61.50.xx.xx)
+                <span class="gb-floor" style="background:#c60;">地板 3F</span>
+                <span style="float:right;">2006-08-24 16:48</span>
+              </div>
+              <div class="gb-body">
+                今天来的有点晚~ <span class="rainbow-text">不过留言还是要留的！</span><br>
+                蝴蝶姐姐！！我也要学做 FrontPage 教程，下次开课叫我！(>ω<)
+              </div>
+            </div>
+          </div>
+
+          <!-- 发表留言 -->
+          <div style="margin-top:10px; padding:8px; background:#f5f5f5; border:1px solid #aaa;">
+            <div style="font-weight:bold; color:#006; margin-bottom:5px;">📝 我要留言：</div>
+            <table style="width:100%; font-size:13px;">
+              <tr>
+                <td style="width:60px;">昵称：</td>
+                <td><input id="gbUser" type="text" style="width:180px; border:2px inset #999; padding:3px;" value="匿名网友"></td>
+                <td style="width:120px; text-align:right;">表情：
+                  <select id="gbFace" style="border:1px solid #999;">
+                    <option>😊 微笑</option>
+                    <option>😂 大笑</option>
+                    <option>😭 哭泣</option>
+                    <option>😠 生气</option>
+                    <option>💕 爱心</option>
+                    <option>🌹 玫瑰</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>内容：</td>
+                <td colspan="2" style="padding-top:4px;">
+                  <textarea id="gbMsg" rows="3" style="width:100%; border:2px inset #999; padding:3px; font-family:SimSun;" placeholder="写点什么给蝴蝶~ (最多200字)"></textarea>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td colspan="2" style="padding-top:6px;">
+                  <button class="old-btn primary" onclick="submitGB()">✍ 提交留言</button>
+                  <button class="old-btn" onclick="document.getElementById('gbMsg').value='';">🗑 清空</button>
+                  <span id="gbResult" style="margin-left:12px; color:#060; font-weight:bold;"></span>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /中栏 -->
+
+    <!-- 右侧栏 -->
+    <div class="right-col">
+
+      <!-- 音乐播放器（千千静听风） -->
+      <div class="win98">
+        <div class="win-title">
+          <span><span class="wt-icon">🎵</span>千千静听 · 播放中</span>
+          <span class="wt-btns">
+            <span class="wt-btn">_</span><span class="wt-btn">▢</span><span class="wt-btn x">×</span>
+          </span>
+        </div>
+        <div class="win-body" style="padding:4px; background:#222;">
+          <div class="player">
+            <div class="pl-title">♪ TTPlayer v5.0.1 ♪</div>
+            <div class="pl-songname">
+              <span class="s-text" id="songScroll">
+                周杰伦 - 七里香 (完整版) · 专辑《七里香》2004 · 4:59
+                ｜　♡ 献给蝴蝶，希望你喜欢这首歌 ♡
+              </span>
+            </div>
+            <div class="pl-spectrum" id="plSpec">
+              <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+              <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+              <div class="bar"></div><div class="bar"></div>
+            </div>
+            <div class="pl-controls">
+              <button class="pl-btn">⏮</button>
+              <button class="pl-btn pl-play" id="playBtn" onclick="togglePlay()">▶</button>
+              <button class="pl-btn pl-stop" onclick="stopPlay()">⏹</button>
+              <button class="pl-btn">⏭</button>
+            </div>
+            <div class="pl-time" id="plTime">01:23 / 04:59</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 迷你日历 -->
+      <div class="win98">
+        <div class="win-title">
+          <span><span class="wt-icon">📅</span>万年历</span>
+          <span class="wt-btns">
+            <span class="wt-btn">_</span><span class="wt-btn">▢</span><span class="wt-btn x">×</span>
+          </span>
+        </div>
+        <div class="win-body" style="padding:4px;">
+          <table class="mini-cal" id="miniCal"></table>
+        </div>
+      </div>
+
+      <!-- 天气预报 -->
+      <div class="win98">
+        <div class="win-title">
+          <span><span class="wt-icon">🌤</span>天气预报</span>
+          <span class="wt-btns">
+            <span class="wt-btn">_</span><span class="wt-btn">▢</span><span class="wt-btn x">×</span>
+          </span>
+        </div>
+        <div class="win-body" style="padding:4px;">
+          <div class="weather-box">
+            <div style="font-size:12px;color:#036;font-weight:bold;">🏙 北京</div>
+            <div class="big-icon">☀️</div>
+            <div class="t">28°C / 21°C</div>
+            <div class="desc">晴转多云 · 微风</div>
+            <div style="font-size:11px;color:#036;margin-top:4px;">紫外线：中等　穿衣：短袖</div>
+          </div>
+          <div style="display:flex; gap:4px; margin-top:6px; font-size:11px; text-align:center;">
+            <div style="flex:1; background:#f5f5f5; padding:4px; border:1px solid #ccc;">
+              五<br>🌤<br><b>29/22</b>
+            </div>
+            <div style="flex:1; background:#f5f5f5; padding:4px; border:1px solid #ccc;">
+              六<br>⛅<br><b>27/20</b>
+            </div>
+            <div style="flex:1; background:#f5f5f5; padding:4px; border:1px solid #ccc;">
+              日<br>🌧<br><b>24/19</b>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 小调查 -->
+      <div class="win98">
+        <div class="win-title">
+          <span><span class="wt-icon">📊</span>本周小调查</span>
+          <span class="wt-btns">
+            <span class="wt-btn">_</span><span class="wt-btn">▢</span><span class="wt-btn x">×</span>
+          </span>
+        </div>
+        <div class="win-body" style="padding:8px;">
+          <div class="poll-title">Q: 你喜欢周杰伦的哪首歌？</div>
+          <label class="poll-opt"><input type="radio" name="poll">七里香 (38%)</label>
+          <label class="poll-opt"><input type="radio" name="poll" checked>青花瓷 (26%)</label>
+          <label class="poll-opt"><input type="radio" name="poll">双截棍 (18%)</label>
+          <label class="poll-opt"><input type="radio" name="poll">晴天 (12%)</label>
+          <label class="poll-opt"><input type="radio" name="poll">其他 (6%)</label>
+          <div style="font-size:11px; color:#666; margin-top:4px;">已有 3,247 人参与</div>
+          <div class="poll-btn-wrap">
+            <button class="old-btn" onclick="votePoll()">✅ 投票</button>
+            <button class="old-btn">📊 查看结果</button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /右栏 -->
+
+  </div><!-- /main-grid -->
+
+  <!-- 页脚 -->
+  <div class="site-footer">
+    <div>
+      <a href="#">关于我</a><span class="sep">|</span>
+      <a href="#">联系方式</a><span class="sep">|</span>
+      <a href="#">给我留言</a><span class="sep">|</span>
+      <a href="#">RSS 订阅</a><span class="sep">|</span>
+      <a href="#">网站地图</a><span class="sep">|</span>
+      <a href="#">返回顶部 ↑</a>
+    </div>
+    <div style="margin-top:6px;">
+      © 2003-2006 ❄冰蝴蝶❄ Personal Homepage. All Rights Reserved.
+      <span class="sep">|</span>
+      用 ❤ + FrontPage 2003 + Flash MX 制作
+    </div>
+    <div style="margin-top:4px;">
+      京ICP备 00000000 号-1
+      <span class="sep">|</span>
+      邮件联系：ice_butterfly@163.com
+      <span class="sep">|</span>
+      <a href="#">申请友情链接</a>
+    </div>
+    <div class="powered">
+      Powered by HomePage V3.2 · 页面生成耗时 0.028 秒 · 最佳分辨率 1024×768 · IE6.0+ / Netscape 7.0
+    </div>
+  </div>
+
+</div><!-- /page-shell -->
+
+<!-- 右下角浮动小广告（当年网络风格必备） -->
+<div class="floating-ad" id="floatAd">
+  <span class="ad-x" onclick="document.getElementById('floatAd').style.display='none'">×</span>
+  <div class="ad-title">🔥 限时特惠 🔥</div>
+  <div>🎁 MP3 铃声下载！</div>
+  <div>周杰伦最新单曲<br>
+    发送短信 <b style="color:#c00;">A8 七里香</b><br>
+    到 <b style="color:#00c;">8888</b> 即可拥有<br>
+    仅 2 元/条，不含通讯费
+  </div>
+  <div style="margin-top:4px;color:#999;font-size:10px;">← 点击关闭</div>
+</div>
+
+<script>
+/* ===== 跑马灯内容 ===== */
+const mrItems = [
+  ['🎉 欢迎来到冰蝴蝶的温馨小窝！感谢您的访问~','hl'],
+  ['📢 公告：本主页于今日完成 V3.2 升级，新增加密相册功能~',''],
+  ['🎵 背景音乐已换为《七里香》，希望您喜欢！（如无声音请检查 Windows Media Player）','gr'],
+  ['💝 本周之星：§紫风铃§ 留言突破 300 条！','hl'],
+  ['📧 想要和我交换友情链接？点击「给我写信」吧！','bl'],
+  ['🔥 Hot：周杰伦 2006 世界巡回演唱会门票预售中~','hl'],
+  ['📚 推荐文章：教你用 Photoshop 做闪字教程 +5 篇~','gr'],
+  ['🌸 祝大家每天都有好心情！蝴蝶爱你们~ 💖','hl'],
+];
+function buildMR() {
+  let html = '';
+  for (let r = 0; r < 2; r++) {
+    mrItems.forEach(([t,c]) => { html += `<span class="${c}">● ${t}</span>`; });
+  }
+  document.getElementById('mrInner').innerHTML = html;
+}
+buildMR();
+
+/* ===== 日期：生日倒计时 + 今天日期 ===== */
+function initDates() {
+  // 用模拟的"千禧年"日期：2006-08-25（当年风格）
+  const now = new Date(2006, 7, 25); // 月份 0 基准，7=8月
+  const bd  = new Date(2007, 5, 15); // 2007-06-15 下次生日
+  const diff = Math.ceil((bd - now) / 86400000);
+  document.getElementById('daysToBD').textContent = diff;
+  const wd = ['日','一','二','三','四','五','六'][now.getDay()];
+  document.getElementById('todayStr').textContent =
+    `2006年8月25日 星期${wd}`;
+}
+initDates();
+
+/* ===== 打字效果（DOS/BBS 风） ===== */
+const typingText = [
+  '正在连接 FTP 服务器... [成功]',
+  '加载个人主页配置... [成功]',
+  '读取访客计数器... [52018]',
+  '读取留言板... [最新 3 条]',
+  '加载背景音乐《七里香》... [成功]',
+  '',
+  '> 欢迎你，第 52019 位访客！请随便看看~',
+  '> 如果你喜欢这个主页，请在留言板留下足迹 ♡',
+];
+function startTyping() {
+  const el = document.getElementById('typingLine');
+  let l = 0, c = 0, html = '';
+  const tick = () => {
+    if (l < typingText.length) {
+      const line = typingText[l];
+      if (c <= line.length) {
+        const cur = line.slice(0, c) + `<span class="cursor"> </span>`;
+        el.innerHTML = html + (l>0?'\n':'') + cur;
+        c++;
+        setTimeout(tick, 20 + Math.random()*50);
+      } else {
+        html += (l>0?'\n':'') + line;
+        l++; c = 0;
+        setTimeout(tick, 260);
+      }
+    } else {
+      el.innerHTML = html + '\n<span class="cursor"> </span>';
+      // 循环闪烁光标
+    }
+  };
+  tick();
+}
+startTyping();
+
+/* ===== 访客计数器（每秒加1，模拟老站人气） ===== */
+let counterVal = 52018;
+let todayCount = 128;
+const digitEl = document.querySelectorAll('#counter .digit');
+function updateCounter() {
+  counterVal++;
+  if (counterVal % 11 === 0) todayCount++;
+  const str = String(counterVal).padStart(7, '0');
+  digitEl.forEach((d, i) => {
+    d.textContent = str[i];
+    // 翻转动画
+    d.style.transform = 'scale(1.3)';
+    setTimeout(()=>{ d.style.transform = ''; }, 150);
+  });
+  document.getElementById('todayCount').textContent = todayCount;
+}
+setInterval(updateCounter, 1800);
+
+/* ===== 在线人数（随机浮动） ===== */
+let online = 37;
+setInterval(() => {
+  online += Math.floor(Math.random()*5) - 2;
+  if (online < 10) online = 10 + Math.floor(Math.random()*5);
+  if (online > 60) online = 55 + Math.floor(Math.random()*5);
+  document.getElementById('onlineNum').textContent = online;
+}, 3000);
+
+/* ===== 迷你日历（2006年8月） ===== */
+function buildCalendar() {
+  // 2006-08-01 是星期二
+  const firstDay = 2;
+  const days = 31;
+  const today = 25;
+  let html = '<caption>2006 年 8 月</caption><thead><tr>'
+    +'<th class="sun">日</th><th>一</th><th>二</th><th>三</th>'
+    +'<th>四</th><th>五</th><th class="sat">六</th></tr></thead><tbody>';
+  let d = 1;
+  for (let w = 0; w < 6; w++) {
+    html += '<tr>';
+    for (let i = 0; i < 7; i++) {
+      if (w === 0 && i < firstDay) { html += '<td class="empty"></td>'; }
+      else if (d > days) { html += '<td class="empty"></td>'; }
+      else {
+        const cls =
+          (d === today ? 'today ' : '') +
+          (i === 0 ? 'sun ' : '') +
+          (i === 6 ? 'sat ' : '');
+        html += `<td class="${cls}" title="2006-08-${d}">${d}</td>`;
+        d++;
+      }
+    }
+    html += '</tr>';
+    if (d > days) break;
+  }
+  html += '</tbody>';
+  document.getElementById('miniCal').innerHTML = html;
+}
+buildCalendar();
+
+/* ===== 音乐播放器（模拟） ===== */
+let playing = true;
+let curSec = 83; // 1:23
+const totalSec = 299; // 4:59
+function fmtTime(s) {
+  const m = Math.floor(s/60), sec = s%60;
+  return String(m).padStart(2,'0')+':'+String(sec).padStart(2,'0');
+}
+function tickTime() {
+  if (playing) {
+    curSec++;
+    if (curSec > totalSec) curSec = 0;
+  }
+  document.getElementById('plTime').textContent =
+    fmtTime(curSec) + ' / ' + fmtTime(totalSec);
+}
+setInterval(tickTime, 1000);
+
+function togglePlay() {
+  playing = !playing;
+  const btn = document.getElementById('playBtn');
+  btn.textContent = playing ? '⏸' : '▶';
+  btn.classList.toggle('pl-play', !playing);
+  // 音频条动画停止
+  document.querySelectorAll('#plSpec .bar').forEach(b => {
+    b.style.animationPlayState = playing ? 'running' : 'paused';
+  });
+}
+function stopPlay() {
+  playing = false;
+  curSec = 0;
+  document.getElementById('playBtn').textContent = '▶';
+  document.getElementById('playBtn').classList.add('pl-play');
+  document.querySelectorAll('#plSpec .bar').forEach(b => b.style.animationPlayState='paused');
+  tickTime();
+}
+
+/* ===== 提交留言（纯前端模拟） ===== */
+function submitGB() {
+  const user = document.getElementById('gbUser').value.trim() || '匿名网友';
+  const msg  = document.getElementById('gbMsg').value.trim();
+  const face = document.getElementById('gbFace').value.split(' ')[0];
+  const result = document.getElementById('gbResult');
+  if (!msg) {
+    result.style.color = '#c00';
+    result.textContent = '❌ 请写点东西再提交呀~';
+    return;
+  }
+  result.style.color = '#060';
+  result.textContent = '✅ 留言提交成功！感谢支持 ♡';
+  setTimeout(() => { result.textContent = ''; }, 4000);
+  document.getElementById('gbMsg').value = '';
+}
+
+/* ===== 投票模拟 ===== */
+function votePoll() {
+  const v = document.querySelector('input[name="poll"]:checked');
+  if (!v) { alert('请先选择一个选项~'); return; }
+  alert('投票成功！感谢您的参与！\n（这是演示功能，结果不计入服务器）');
+}
+
+/* ===== 让 win98 窗口标题栏的 X 按钮真的可以关（只是隐藏） ===== */
+document.querySelectorAll('.win-title .wt-btn.x').forEach(btn => {
+  btn.addEventListener('click', function(e) {
+    const win = this.closest('.win98');
+    if (win) {
+      const h = win.previousElementSibling;
+      const note = document.createElement('div');
+      note.textContent = '📌 [窗口已最小化，点击此处恢复]';
+      note.style.cssText = 'font-size:12px;color:#006;background:#e6eefc;padding:4px 8px;margin-bottom:8px;cursor:pointer;border:1px dashed #6699cc;';
+      win.style.display = 'none';
+      win.parentNode.insertBefore(note, win);
+      note.addEventListener('click', () => {
+        win.style.display = '';
+        note.remove();
+      });
+    }
+    e.stopPropagation();
+  });
+});
+</script>
+</body>
+</html>

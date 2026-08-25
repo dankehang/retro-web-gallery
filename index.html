@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>✨ Blingee Pixel World ✨</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<style>
+  /* ========== Blingee Pixel Reset & Base ========== */
+  * { box-sizing: border-box; margin: 0; padding: 0; image-rendering: pixelated; }
+
+  html, body {
+    font-family: 'VT323', monospace;
+    font-size: 20px;
+    color: #222;
+    overflow-x: hidden;
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><text y='20' font-size='20'>⭐</text></svg>") 12 12, auto;
+  }
+
+  /* ========== Rainbow Animated Background ========== */
+  body {
+    background: linear-gradient(
+      45deg,
+      #ff6b9d, #feca57, #48dbfb, #ff9ff3, #54a0ff,
+      #5f27cd, #ff6b9d, #feca57, #48dbfb
+    );
+    background-size: 400% 400%;
+    animation: rainbowBG 12s ease infinite;
+    min-height: 100vh;
+    position: relative;
+  }
+  @keyframes rainbowBG {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* ========== Pixelated Checkerboard Overlay ========== */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(45deg, rgba(255,255,255,0.08) 25%, transparent 25%),
+      linear-gradient(-45deg, rgba(255,255,255,0.08) 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.08) 75%),
+      linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.08) 75%);
+    background-size: 16px 16px;
+    background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ========== Falling Sparkles Background Layer ========== */
+  #sparkle-bg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+  }
+  .bg-sparkle {
+    position: absolute;
+    font-size: 20px;
+    animation: fall linear infinite, twinkle 1.5s ease-in-out infinite alternate;
+    opacity: 0.85;
+  }
+  @keyframes fall {
+    0%   { transform: translateY(-10vh) rotate(0deg); }
+    100% { transform: translateY(110vh) rotate(360deg); }
+  }
+  @keyframes twinkle {
+    0%   { opacity: 0.2; transform: scale(0.7); }
+    100% { opacity: 1;   transform: scale(1.2); }
+  }
+
+  /* ========== Mouse Trail Sparkles ========== */
+  .trail-sparkle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    font-size: 18px;
+    animation: trailPop 0.9s ease-out forwards;
+  }
+  @keyframes trailPop {
+    0%   { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+    100% { opacity: 0; transform: translate(-50%, -150%) scale(0.3) rotate(180deg); }
+  }
+
+  /* ========== Main Container ========== */
+  .page {
+    position: relative;
+    z-index: 5;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 30px 20px 60px;
+  }
+
+  /* ========== Pixel Bling Border Helper ========== */
+  .pixel-border {
+    border: 6px solid #222;
+    box-shadow:
+      6px 0 0 #222, -6px 0 0 #222,
+      0 6px 0 #222, 0 -6px 0 #222,
+      6px 6px 0 #fff, -6px -6px 0 #fff,
+      -6px 6px 0 #fff, 6px -6px 0 #fff,
+      12px 12px 0 #ff6b9d, -12px -12px 0 #48dbfb,
+      -12px 12px 0 #feca57, 12px -12px 0 #ff9ff3,
+      0 0 40px rgba(255, 107, 157, 0.5);
+  }
+
+  /* ========== Header / Hero ========== */
+  .hero {
+    text-align: center;
+    padding: 50px 30px;
+    background: linear-gradient(180deg, #fff0f6 0%, #ffe4f0 50%, #e0f7ff 100%);
+    margin-bottom: 50px;
+    position: relative;
+    border-radius: 2px;
+  }
+  .hero::before, .hero::after {
+    content: "✨";
+    position: absolute;
+    font-size: 48px;
+    animation: floatStar 3s ease-in-out infinite;
+  }
+  .hero::before { top: 20px; left: 30px; animation-delay: 0s; }
+  .hero::after  { bottom: 20px; right: 30px; animation-delay: 1.5s; }
+  @keyframes floatStar {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50%      { transform: translateY(-15px) rotate(20deg); }
+  }
+
+  .bling-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: clamp(28px, 5vw, 52px);
+    line-height: 1.4;
+    margin-bottom: 20px;
+    background: linear-gradient(
+      90deg,
+      #ff006e, #fb5607, #ffbe0b, #8338ec, #3a86ff, #06ffa5, #ff006e
+    );
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: rainbowText 4s linear infinite, bounce 2s ease-in-out infinite;
+    text-shadow:
+      3px 3px 0 #fff,
+      6px 6px 0 rgba(255,0,110,0.3);
+    letter-spacing: 2px;
+  }
+  @keyframes rainbowText {
+    0%   { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-8px); }
+  }
+
+  .bling-subtitle {
+    font-size: 28px;
+    color: #5f27cd;
+    margin-bottom: 28px;
+    text-shadow: 2px 2px 0 #fff;
+    animation: shimmer 2s ease-in-out infinite;
+  }
+  @keyframes shimmer {
+    0%, 100% { filter: brightness(1); }
+    50%      { filter: brightness(1.3) drop-shadow(0 0 10px #ff9ff3); }
+  }
+
+  /* ========== Pixel Buttons ========== */
+  .pixel-btn-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .pixel-btn {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    padding: 14px 24px;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.1s;
+    background: #ff6b9d;
+    box-shadow:
+      inset -4px -4px 0 #c44569,
+      inset  4px  4px 0 #ff9ec2,
+      6px 6px 0 #222;
+  }
+  .pixel-btn:hover   { transform: translate(-2px, -2px); filter: brightness(1.1); }
+  .pixel-btn:active  { transform: translate(4px, 4px); box-shadow: inset -4px -4px 0 #c44569, inset 4px 4px 0 #ff9ec2, 2px 2px 0 #222; }
+  .pixel-btn.cyan    { background: #48dbfb; box-shadow: inset -4px -4px 0 #0abde3, inset 4px 4px 0 #a0eaff, 6px 6px 0 #222; }
+  .pixel-btn.yellow  { background: #feca57; box-shadow: inset -4px -4px 0 #ff9f43, inset 4px 4px 0 #ffe0a3, 6px 6px 0 #222; color: #222; }
+  .pixel-btn.purple  { background: #a55eea; box-shadow: inset -4px -4px 0 #8854d0, inset 4px 4px 0 #d3b4ff, 6px 6px 0 #222; }
+
+  /* ========== Section Layout ========== */
+  .section {
+    background: #fff;
+    padding: 36px 30px;
+    margin-bottom: 40px;
+    position: relative;
+    border-radius: 2px;
+  }
+
+  .section-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: clamp(18px, 3vw, 26px);
+    text-align: center;
+    margin-bottom: 28px;
+    padding: 14px;
+    background: repeating-linear-gradient(
+      90deg,
+      #ff6b9d 0px, #ff6b9d 20px,
+      #feca57 20px, #feca57 40px,
+      #48dbfb 40px, #48dbfb 60px,
+      #a55eea 60px, #a55eea 80px
+    );
+    color: #fff;
+    text-shadow: 2px 2px 0 #222, 4px 4px 0 rgba(0,0,0,0.2);
+    position: relative;
+  }
+  .section-title::before, .section-title::after {
+    content: "★";
+    margin: 0 14px;
+    color: #fff;
+    animation: spin 3s linear infinite;
+    display: inline-block;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ========== Pixel Cards Grid ========== */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 36px 28px;
+    padding: 10px;
+  }
+
+  .pixel-card {
+    background: #fff;
+    border: 4px solid #222;
+    padding: 18px;
+    position: relative;
+    transition: transform 0.25s ease;
+    box-shadow: 8px 8px 0 #222;
+  }
+  .pixel-card::before {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    background: linear-gradient(45deg, #ff6b9d, #feca57, #48dbfb, #a55eea, #ff6b9d);
+    background-size: 400% 400%;
+    animation: rainbowBG 6s ease infinite;
+    z-index: -1;
+    filter: blur(0.5px);
+  }
+  .pixel-card:hover {
+    transform: translate(-4px, -4px) rotate(-1deg);
+    box-shadow: 12px 12px 0 #222, 0 0 30px rgba(255,107,157,0.6);
+  }
+
+  /* Pixel art placeholder image */
+  .pixel-img {
+    width: 100%;
+    height: 140px;
+    margin-bottom: 16px;
+    background:
+      linear-gradient(135deg, #ffcccc 25%, transparent 25%) 0 0/20px 20px,
+      linear-gradient(225deg, #ffcccc 25%, transparent 25%) 0 0/20px 20px,
+      linear-gradient(315deg, #ffcccc 25%, transparent 25%) 0 0/20px 20px,
+      linear-gradient(45deg,  #ffcccc 25%, transparent 25%) 0 0/20px 20px,
+      linear-gradient(180deg, #fff0f6 0%, #e0f7ff 100%);
+    position: relative;
+    border: 3px dashed #222;
+    overflow: hidden;
+  }
+  .pixel-img .emoji {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 72px;
+    animation: wiggle 2.5s ease-in-out infinite;
+  }
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(-5deg) scale(1); }
+    50%      { transform: rotate(5deg)  scale(1.08); }
+  }
+
+  .card-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 13px;
+    color: #ff006e;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 3px dotted #feca57;
+    text-shadow: 1px 1px 0 #fff;
+  }
+  .card-text {
+    font-size: 20px;
+    line-height: 1.4;
+    color: #333;
+  }
+
+  /* ========== Sparkle Text Decorations ========== */
+  .sparkle-inline::before { content: "✦ "; color: #feca57; animation: twinkle 1s infinite; display: inline-block; }
+  .sparkle-inline::after  { content: " ✦"; color: #feca57; animation: twinkle 1s infinite 0.5s; display: inline-block; }
+
+  /* ========== Glitter Text Box ========== */
+  .glitter-box {
+    padding: 24px;
+    background:
+      radial-gradient(circle at 20% 30%, #ff6b9d 2px, transparent 3px),
+      radial-gradient(circle at 70% 60%, #48dbfb 2px, transparent 3px),
+      radial-gradient(circle at 40% 80%, #feca57 2px, transparent 3px),
+      radial-gradient(circle at 90% 20%, #a55eea 2px, transparent 3px),
+      linear-gradient(180deg, #fff8e7 0%, #ffe0f0 100%);
+    background-size: 40px 40px, 60px 60px, 50px 50px, 70px 70px, auto;
+    border: 4px double #ff006e;
+    font-size: 22px;
+    line-height: 1.5;
+    color: #5f27cd;
+    text-align: center;
+  }
+
+  /* ========== Pixel Badge / Stamp ========== */
+  .badge-row { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-top: 24px; }
+  .pixel-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: #feca57;
+    border: 3px solid #222;
+    box-shadow: 4px 4px 0 #222;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    color: #222;
+    transform: rotate(-3deg);
+    animation: stamp 2.5s ease-in-out infinite;
+  }
+  .pixel-badge:nth-child(2) { background: #48dbfb; transform: rotate(2deg); animation-delay: 0.3s; }
+  .pixel-badge:nth-child(3) { background: #ff6b9d; color: #fff; transform: rotate(-1deg); animation-delay: 0.6s; }
+  .pixel-badge:nth-child(4) { background: #a55eea; color: #fff; transform: rotate(3deg); animation-delay: 0.9s; }
+  @keyframes stamp {
+    0%, 100% { transform: rotate(var(--r, -3deg)) scale(1); }
+    50%      { transform: rotate(var(--r, -3deg)) scale(1.08); }
+  }
+
+  /* ========== Marquee Scrolling Blingee Bar ========== */
+  .marquee {
+    overflow: hidden;
+    white-space: nowrap;
+    background: #222;
+    border-top: 4px solid #ff6b9d;
+    border-bottom: 4px solid #48dbfb;
+    padding: 14px 0;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 5;
+  }
+  .marquee-inner {
+    display: inline-block;
+    animation: scrollMarquee 20s linear infinite;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 14px;
+    color: #fff;
+  }
+  .marquee-inner span { margin: 0 28px; }
+  .marquee-inner .m-pink   { color: #ff6b9d; }
+  .marquee-inner .m-yellow { color: #feca57; }
+  .marquee-inner .m-cyan   { color: #48dbfb; }
+  .marquee-inner .m-purple { color: #a55eea; }
+  @keyframes scrollMarquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ========== Guestbook Style Form ========== */
+  .guestbook {
+    max-width: 560px;
+    margin: 0 auto;
+  }
+  .guestbook label {
+    display: block;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 11px;
+    color: #ff006e;
+    margin-bottom: 8px;
+    margin-top: 16px;
+  }
+  .guestbook input, .guestbook textarea {
+    width: 100%;
+    padding: 12px;
+    font-family: 'VT323', monospace;
+    font-size: 22px;
+    border: 4px solid #222;
+    background: #fff8e7;
+    box-shadow: inset 0 0 0 2px #fff, inset 0 0 0 4px #feca57;
+    outline: none;
+    transition: all 0.15s;
+  }
+  .guestbook input:focus, .guestbook textarea:focus {
+    background: #e0f7ff;
+    box-shadow: inset 0 0 0 2px #fff, inset 0 0 0 4px #48dbfb, 0 0 20px rgba(72,219,251,0.5);
+  }
+  .guestbook textarea { min-height: 120px; resize: vertical; }
+  .guestbook button {
+    margin-top: 20px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* ========== Footer ========== */
+  .footer {
+    text-align: center;
+    padding: 30px 20px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 11px;
+    color: #fff;
+    text-shadow: 2px 2px 0 #222;
+    position: relative;
+    z-index: 5;
+    line-height: 1.8;
+  }
+  .footer-hearts { font-size: 20px; letter-spacing: 8px; margin: 10px 0; animation: heartbeat 1.2s ease-in-out infinite; }
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    25%      { transform: scale(1.15); }
+    50%      { transform: scale(0.95); }
+  }
+
+  /* ========== Cursor Click Burst ========== */
+  .click-burst {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    animation: burst 0.7s ease-out forwards;
+  }
+  @keyframes burst {
+    0%   { transform: translate(-50%, -50%) scale(0); opacity: 1; box-shadow: 0 0 0 0 #fff; }
+    100% { transform: translate(-50%, -50%) scale(8); opacity: 0; box-shadow: 0 0 0 20px transparent; }
+  }
+
+  /* ========== Responsive ========== */
+  @media (max-width: 600px) {
+    .page { padding: 16px 10px 40px; }
+    .hero { padding: 30px 16px; }
+    .section { padding: 24px 16px; }
+    .pixel-btn { font-size: 10px; padding: 12px 16px; }
+    .bling-title { letter-spacing: 1px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Falling sparkles background -->
+<div id="sparkle-bg"></div>
+
+<!-- Top marquee -->
+<div class="marquee">
+  <div class="marquee-inner" id="marqueeInner"></div>
+</div>
+
+<div class="page">
+
+  <!-- HERO -->
+  <header class="hero pixel-border">
+    <h1 class="bling-title">★ Blingee Pixel World ★</h1>
+    <p class="bling-subtitle sparkle-inline">欢迎来到闪亮像素世界 ~ 闪闪发光 ヾ(≧▽≦*)o</p>
+    <div class="pixel-btn-group">
+      <button class="pixel-btn" onclick="launchConfetti()">✨ 点我闪耀</button>
+      <button class="pixel-btn cyan" onclick="playBling()">💎 钻石特效</button>
+      <button class="pixel-btn yellow" onclick="shuffleCards()">🎲 随机魔法</button>
+    </div>
+    <div class="badge-row">
+      <span class="pixel-badge" style="--r: -3deg;">★ CUTE ★</span>
+      <span class="pixel-badge" style="--r: 2deg;">✦ PIXEL ✦</span>
+      <span class="pixel-badge" style="--r: -1deg;">♥ SPARKLE ♥</span>
+      <span class="pixel-badge" style="--r: 3deg;">◆ BLING ◆</span>
+    </div>
+  </header>
+
+  <!-- ABOUT / INTRO -->
+  <section class="section pixel-border">
+    <h2 class="section-title">关于闪亮风格</h2>
+    <div class="glitter-box">
+      <p>
+        <span class="sparkle-inline">Blingee 风格</span> 源自 2000 年代的网络文化，
+        以<strong style="color:#ff006e;">闪亮装饰</strong>、
+        <strong style="color:#48dbfb;">彩虹渐变</strong>、
+        <strong style="color:#a55eea;">像素艺术</strong>和
+        <strong style="color:#feca57;">可爱元素</strong>为特色！
+        <br><br>
+        ♥‿♥ 在这里，每一个角落都闪闪发光，每一次点击都绽放火花 ✨✧･ﾟ: *✧
+      </p>
+    </div>
+  </section>
+
+  <!-- FEATURE CARDS -->
+  <section class="section pixel-border">
+    <h2 class="section-title">闪亮像素画廊</h2>
+    <div class="card-grid" id="cardGrid">
+      <article class="pixel-card">
+        <div class="pixel-img"><div class="emoji">🦄</div></div>
+        <h3 class="card-title">独角兽幻想</h3>
+        <p class="card-text">在彩虹云上奔跑的梦幻独角兽，留下一串闪亮的足迹 ✨🌈✨</p>
+      </article>
+      <article class="pixel-card">
+        <div class="pixel-img"><div class="emoji">💖</div></div>
+        <h3 class="card-title">甜蜜心动</h3>
+        <p class="card-text">粉色爱心满溢，每一次跳动都是小小的幸福爆炸 ♥‿♥</p>
+      </article>
+      <article class="pixel-card">
+        <div class="pixel-img"><div class="emoji">⭐</div></div>
+        <h3 class="card-title">星星派对</h3>
+        <p class="card-text">闪闪发光的像素星星，点亮整个夜空 (✧ω✧) ★☆★☆</p>
+      </article>
+      <article class="pixel-card">
+        <div class="pixel-img"><div class="emoji">💎</div></div>
+        <h3 class="card-title">钻石闪耀</h3>
+        <p class="card-text">像素折射的彩虹光芒，钻石永远是女孩最好的朋友 💍✧</p>
+      </article>
+      <article class="pixel-card">
+        <div class="pixel-img"><div class="emoji">🍭</div></div>
+        <h3 class="card-title">糖果乐园</h3>
+        <p class="card-text">甜甜的像素糖果世界，连空气都是草莓味的 🍓🍬</p>
+      </article>
+      <article class="pixel-card">
+        <div class="pixel-img"><div class="emoji">🌈</div></div>
+        <h3 class="card-title">彩虹之桥</h3>
+        <p class="card-text">七色光带连接梦想与现实，每一步都超级闪亮！ ～(^з^)-♡</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- GUESTBOOK -->
+  <section class="section pixel-border">
+    <h2 class="section-title">闪亮留言板</h2>
+    <form class="guestbook" onsubmit="submitGuestbook(event)">
+      <label for="gb-name">★ 你的昵称</label>
+      <input id="gb-name" type="text" placeholder="留下你的闪亮名字 ✨" maxlength="30" required>
+
+      <label for="gb-msg">♥ 想对我说的话</label>
+      <textarea id="gb-msg" placeholder="写下你的心意，让它闪闪发光 💖" maxlength="200" required></textarea>
+
+      <button class="pixel-btn purple" type="submit">✦ 发送闪耀 ✦</button>
+    </form>
+    <div id="gb-result" style="margin-top: 20px; text-align: center; font-size: 22px; color: #5f27cd; min-height: 30px;"></div>
+  </section>
+
+</div>
+
+<!-- Bottom marquee -->
+<div class="marquee" style="margin-bottom:0;">
+  <div class="marquee-inner" id="marqueeInner2"></div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-hearts">💖 💜 💙 💚 💛 🧡 ❤️</div>
+  <div>© 2026 ✦ BLINGEE PIXEL WORLD ✦</div>
+  <div style="margin-top: 10px; opacity: 0.9;">Made with ♡ & lots of ✨ SPARKLES ✨</div>
+</footer>
+
+<script>
+  /* ===================== Falling Sparkles Background ===================== */
+  const sparkleBG = document.getElementById('sparkle-bg');
+  const sparkleEmojis = ['✨','⭐','💖','💎','🌟','✦','♡','🌸','🦄','🌈'];
+  for (let i = 0; i < 50; i++) {
+    const s = document.createElement('div');
+    s.className = 'bg-sparkle';
+    s.textContent = sparkleEmojis[Math.floor(Math.random() * sparkleEmojis.length)];
+    s.style.left = Math.random() * 100 + 'vw';
+    s.style.fontSize = (14 + Math.random() * 20) + 'px';
+    s.style.animationDuration = (8 + Math.random() * 10) + 's, ' + (1 + Math.random() * 1.5) + 's';
+    s.style.animationDelay = (Math.random() * -15) + 's, ' + (Math.random() * -2) + 's';
+    sparkleBG.appendChild(s);
+  }
+
+  /* ===================== Mouse Trail Sparkles ===================== */
+  const trailEmojis = ['✨','⭐','💖','💎','🌟','✦'];
+  let lastTrail = 0;
+  document.addEventListener('mousemove', (e) => {
+    const now = Date.now();
+    if (now - lastTrail < 45) return;
+    lastTrail = now;
+    const t = document.createElement('div');
+    t.className = 'trail-sparkle';
+    t.textContent = trailEmojis[Math.floor(Math.random() * trailEmojis.length)];
+    t.style.left = e.clientX + 'px';
+    t.style.top  = e.clientY + 'px';
+    const size = 12 + Math.random() * 14;
+    t.style.fontSize = size + 'px';
+    document.body.appendChild(t);
+    setTimeout(() => t.remove(), 900);
+  });
+
+  /* ===================== Click Burst Effect ===================== */
+  document.addEventListener('click', (e) => {
+    for (let i = 0; i < 6; i++) {
+      setTimeout(() => {
+        const b = document.createElement('div');
+        b.className = 'click-burst';
+        b.style.left = e.clientX + (Math.random() - 0.5) * 40 + 'px';
+        b.style.top  = e.clientY + (Math.random() - 0.5) * 40 + 'px';
+        const colors = ['#ff6b9d','#feca57','#48dbfb','#a55eea','#06ffa5'];
+        b.style.background = colors[Math.floor(Math.random() * colors.length)];
+        document.body.appendChild(b);
+        setTimeout(() => b.remove(), 700);
+      }, i * 40);
+    }
+  });
+
+  /* ===================== Marquee Content ===================== */
+  const marqueeItems = [
+    ['✨ 欢迎来到闪亮世界 ✨','m-pink'],
+    ['★ BLINGEE PIXEL ★','m-yellow'],
+    ['💖 像素即正义 💖','m-cyan'],
+    ['✧ SPARKLE FOREVER ✧','m-purple'],
+    ['🌈 彩虹永不褪色 🌈','m-pink'],
+    ['💎 DIAMOND GIRL 💎','m-yellow'],
+    ['🌸 Kawaii 4ever 🌸','m-cyan'],
+    ['✦ STARDUST ✦','m-purple'],
+  ];
+  function fillMarquee(el) {
+    let html = '';
+    for (let r = 0; r < 3; r++) {
+      marqueeItems.forEach(([text, cls]) => {
+        html += `<span class="${cls}">${text}</span>`;
+      });
+    }
+    el.innerHTML = html;
+  }
+  fillMarquee(document.getElementById('marqueeInner'));
+  fillMarquee(document.getElementById('marqueeInner2'));
+
+  /* ===================== Confetti Launch ===================== */
+  function launchConfetti() {
+    const confetti = ['✨','⭐','💖','💎','🌟','🎉','🌸','🌈','🦄','🍭','💫','✦','♡','◆'];
+    for (let i = 0; i < 80; i++) {
+      setTimeout(() => {
+        const c = document.createElement('div');
+        c.textContent = confetti[Math.floor(Math.random() * confetti.length)];
+        c.style.position = 'fixed';
+        c.style.left = (50 + (Math.random() - 0.5) * 40) + 'vw';
+        c.style.top = '50vh';
+        c.style.fontSize = (14 + Math.random() * 24) + 'px';
+        c.style.zIndex = 10000;
+        c.style.pointerEvents = 'none';
+        const angle = Math.random() * Math.PI * 2;
+        const speed = 4 + Math.random() * 8;
+        const vx = Math.cos(angle) * speed;
+        const vy = Math.sin(angle) * speed - 4;
+        let x = 0, y = 0, rot = 0;
+        document.body.appendChild(c);
+        const start = Date.now();
+        const tick = () => {
+          const t = (Date.now() - start) / 1000;
+          x += vx;
+          y += vy + t * t * 3;
+          rot += 8;
+          c.style.transform = `translate(${x}px, ${y}px) rotate(${rot}deg)`;
+          c.style.opacity = Math.max(0, 1 - t * 0.5);
+          if (t < 2.5) requestAnimationFrame(tick);
+          else c.remove();
+        };
+        tick();
+      }, i * 18);
+    }
+  }
+
+  /* ===================== Diamond Effect ===================== */
+  function playBling() {
+    for (let r = 0; r < 3; r++) {
+      setTimeout(() => {
+        document.querySelectorAll('.pixel-card, .bling-title, .section-title').forEach((el, i) => {
+          setTimeout(() => {
+            el.style.transition = 'filter 0.3s, transform 0.3s';
+            el.style.filter = 'brightness(1.8) drop-shadow(0 0 30px #fff) drop-shadow(0 0 60px #48dbfb)';
+            el.style.transform = 'scale(1.04)';
+            setTimeout(() => {
+              el.style.filter = '';
+              el.style.transform = '';
+            }, 350);
+          }, i * 60);
+        });
+      }, r * 500);
+    }
+  }
+
+  /* ===================== Shuffle Cards Magic ===================== */
+  function shuffleCards() {
+    const grid = document.getElementById('cardGrid');
+    const cards = Array.from(grid.children);
+    cards.sort(() => Math.random() - 0.5);
+    cards.forEach((card, i) => {
+      card.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+      card.style.transform = 'rotateY(360deg) scale(0.8)';
+      card.style.opacity = '0.3';
+      setTimeout(() => {
+        grid.appendChild(card);
+        card.style.transform = 'rotateY(0) scale(1)';
+        card.style.opacity = '1';
+      }, 300 + i * 50);
+    });
+  }
+
+  /* ===================== Guestbook Submit ===================== */
+  function submitGuestbook(e) {
+    e.preventDefault();
+    const name = document.getElementById('gb-name').value.trim();
+    const msg  = document.getElementById('gb-msg').value.trim();
+    if (!name || !msg) return;
+    const result = document.getElementById('gb-result');
+    const replies = [
+      `✨ ${name}，你的留言已化作闪亮星星！✨`,
+      `💖 谢谢 ${name}！心意已收到，爱心发射 💖`,
+      `🌈 ${name}，彩虹见证了你的美好留言 🌈`,
+      `💎 ${name}，你就是钻石般闪耀的存在！💎`,
+      `🌟 ${name}，你的名字将永远闪耀在像素世界 🌟`,
+    ];
+    result.innerHTML = replies[Math.floor(Math.random() * replies.length)];
+    result.style.animation = 'none';
+    void result.offsetWidth;
+    result.style.animation = 'shimmer 0.8s ease-in-out 3';
+    launchConfetti();
+    document.getElementById('gb-name').value = '';
+    document.getElementById('gb-msg').value = '';
+  }
+
+  /* ===================== Auto Shine on Cards (idle animation) ===================== */
+  setInterval(() => {
+    const cards = document.querySelectorAll('.pixel-card');
+    const randomCard = cards[Math.floor(Math.random() * cards.length)];
+    if (randomCard) {
+      randomCard.style.transition = 'filter 0.4s';
+      randomCard.style.filter = 'brightness(1.25) drop-shadow(0 0 20px #ff6b9d)';
+      setTimeout(() => { randomCard.style.filter = ''; }, 500);
+    }
+  }, 2200);
+</script>
+
+</body>
+</html>
